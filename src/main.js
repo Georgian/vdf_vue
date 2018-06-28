@@ -3,12 +3,32 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
-import router from './router'
+import VueRouter from 'vue-router'
+import InstantSearch from 'vue-instantsearch'
+import Home from '@/components/Home'
+import AddEvent from '@/components/AddEvent'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 
 Vue.use(Vuetify)
-Vue.config.productionTip = false
+Vue.use(VueRouter)
+Vue.use(InstantSearch)
+
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/event',
+      name: 'AddEvent',
+      component: AddEvent
+    }
+  ]
+})
 
 /* eslint-disable no-new */
 new Vue({
