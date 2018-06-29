@@ -28,13 +28,13 @@ export default {
   data: () => ({
     valid: true,
     name: '',
-    email: ''
+    description: ''
   }),
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
         // Native form submission is not yet supported
-        axios.post('http://localhost:8080/event/add', {
+        axios.post('api/event/add', {
           name: this.name,
           description: this.description
         })

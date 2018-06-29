@@ -4,11 +4,6 @@
 
 const path = require('path')
 
-axios.defaults.headers.common = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
-
 module.exports = {
   dev: {
 
@@ -17,10 +12,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       // proxy all webpack dev-server requests starting with /api to our Spring Boot backend (localhost:8088)
-//      '/api': {
-//        target: 'http://localhost:8080',
-//        changeOrigin: true
-//      }
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      }
     },
 
     // Various Dev Server settings
