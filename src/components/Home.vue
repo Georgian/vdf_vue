@@ -3,39 +3,31 @@
     index-name='vdf'
     :search-store='searchStore'>
     <v-app id='vdf'>
-      <v-toolbar color='amber' app absolute clipped-left>
+      <v-toolbar color='amber' app absolute>
         <span class='title ml-3 mr-5'>Varf De Forma</span>
         <div id='search-box'>
-          <!-- SearchBox widget will appear here -->
+          <ais-search-box></ais-search-box>
         </div>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-content>
-        <v-container fluid fill-height class='grey lighten-4'>
-
+        <v-container grid-list-xl>
           <v-layout row wrap>
-            <v-flex d-flex xs12 order-xs5>
+            <v-flex lg2>
               <v-layout column>
-                <v-flex d-flex>
-                  <h1>Name</h1>
-                  <ais-refinement-list attribute-name='sport'></ais-refinement-list>
-                </v-flex>
-                <v-flex>
-                  <h1>Discipline</h1>
-                  <ais-refinement-list attribute-name='discipline'></ais-refinement-list>
-                </v-flex>
+                <h1>Name</h1>
+                <ais-refinement-list attribute-name='sport' :class-names="{'ais-refinement-list__count': 'tag'}"></ais-refinement-list>
+                <h1>Discipline</h1>
+                <ais-refinement-list attribute-name='discipline' :class-names="{'ais-refinement-list__count': 'tag'}"></ais-refinement-list>
               </v-layout>
             </v-flex>
-          </v-layout>
-
-          <v-layout justify-center align-center>
-            <ais-results>
-              <template slot-scope='{ result }'>
-                <h2>
-                  <ais-highlight :result='result' attribute-name='name'></ais-highlight>
-                </h2>
-              </template>
-            </ais-results>
+            <v-flex lg10>
+              <ais-results>
+                <template slot-scope='{ result }'>
+                    <event-card :vdfEvent='result'></event-card>
+                </template>
+              </ais-results>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-content>
@@ -82,7 +74,7 @@ const result2 = {
           'name': 'Sony - PlayStation 3 The Last of Us Bundle - 500GB',
           '_highlightResult': {
             'name': {
-              'value': 'Sony - __ais-highlight__PlayStation__/ais-highlight__ 3 The Last of __ais-highlight__Us__/ais-highlight__ Bundle - __ais-highlight__500GB__/ais-highlight__',
+              'value': 'Sony - __ais-highlight__PlayStation__/ais-highlight__ 3 The Last of __ais-highlight__Us__/ais-highlight__ Bundle - __ais-highlight__500GB__/ais-highlight__'
             }
           }
         }
@@ -122,17 +114,3 @@ export default {
   })
 }
 </script>
-
-<style>
-  #keep main .container {
-    height: 660px;
-  }
-
-  .navigation-drawer__border {
-    display: none;
-  }
-
-  .text {
-    font-weight: 400;
-  }
-</style>

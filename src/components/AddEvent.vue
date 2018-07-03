@@ -8,7 +8,7 @@
       <v-text-field
         v-model="description"
         label="Descriere"
-      ></v-text-field>]
+      ></v-text-field>
       <v-text-field
         v-model="sport"
         label="Sport"
@@ -110,7 +110,18 @@ export default {
         // Native form submission is not yet supported
         axios.post('api/event/add', {
           name: this.name,
-          description: this.description
+          description: this.description,
+          sport: this.sport,
+          discipline: this.discipline,
+          date: this.date,
+          timeSchedule: this.timeSchedule,
+          price: this.price,
+          locationName: this.locationName,
+          locationCoordinates: this.locationCoordinates,
+          registrationLink: this.registrationLink,
+          technicalGuideLink: this.technicalGuideLink,
+          photoLink: this.photoLink,
+          trackLink: this.trackLink
         })
       }
     },
