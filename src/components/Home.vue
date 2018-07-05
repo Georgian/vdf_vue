@@ -22,10 +22,12 @@
               </v-layout>
             </v-flex>
             <v-flex lg10>
-              <ais-results>
-                <template slot-scope='{ result }'>
-                    <event-card :vdfEvent='result'></event-card>
-                </template>
+              <ais-results inline-template>
+                <v-layout row wrap>
+                  <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" xs4>
+                    <event-card :vdfEvent=vdfEvent></event-card>
+                  </v-flex>
+                </v-layout>
               </ais-results>
             </v-flex>
           </v-layout>
@@ -37,48 +39,21 @@
 
 <script>
 import { createFromAlgoliaClient } from 'vue-instantsearch'
+import axios from 'axios'
 
-// const result = {
-//   'results': [{
-//     'exhaustiveNbHits': true,
-//     'hits': [
-//       {
-//         'name': 'a',
-//         '_highlightResult': {
-//           'name': 'a'
-//         }
-//       },
-//       {
-//         'name': 'b',
-//         '_highlightResult': {
-//           'name': 'b'
-//         }
-//       }
-//     ],
-//     hitsPerPage: 20,
-//     index: 'vdf',
-//     nbHits: 2,
-//     nbPages: 50,
-//     page: 0,
-//     params: '',
-//     processingTimeMS: 1,
-//     query: 'a'
-//   }]
-// }
-
-const result2 = {
+var result = {
   'results': [
     {
-      'hits': [
-        {
-          'name': 'Sony - PlayStation 3 The Last of Us Bundle - 500GB',
-          '_highlightResult': {
-            'name': {
-              'value': 'Sony - __ais-highlight__PlayStation__/ais-highlight__ 3 The Last of __ais-highlight__Us__/ais-highlight__ Bundle - __ais-highlight__500GB__/ais-highlight__'
-            }
-          }
-        }
-      ],
+      // 'hits': [
+      //   {
+      //     'name': 'Sony - PlayStation 3 The Last of Us Bundle - 500GB',
+      //     '_highlightResult': {
+      //       'name': {
+      //         'value': 'Sony - __ais-highlight__PlayStation__/ais-highlight__ 3 The Last of __ais-highlight__Us__/ais-highlight__ Bundle - __ais-highlight__500GB__/ais-highlight__'
+      //       }
+      //     }
+      //   }
+      // ],
       'facets': {
         'sport': {
           'MTB': 1
@@ -99,18 +74,35 @@ const result2 = {
 
 const client = {
   search (requests) {
-    return Promise.resolve(result2)
+    // var allEvents = axios.get('/api/event')
+    //
+    // result.hits = allEvents
+
+    return axios.get('/api/event').then((r) => {
+      result.results[0].hits = r.data
+      return result
+    })
+
+    // return Promise.resolve(result)
   }
 }
 
 const store = createFromAlgoliaClient(client)
 
-// store.addFacet('sport')
-
 export default {
   data: () => ({
     drawer: null,
     searchStore: store
-  })
+  }),
+  methods: {
+    updateText: function () {
+      axios.get('/api/event').then((r) => {
+        this.text = r.data
+      })
+    }
+  },
+  mounted () {
+    this.updateText()
+  }
 }
 </script>

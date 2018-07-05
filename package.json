@@ -14,10 +14,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0",
+    "@fortawesome/vue-fontawesome": "^0.1.0",
     "algoliasearch-helper": "^2.26.1",
     "axios": "^0.18.0",
     "material-design-icons-iconfont": "^3.0.3",
     "vue": "^2.5.2",
+    "vue-fontawesome": "0.0.2",
     "vue-instantsearch": "^1.7.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.19"
