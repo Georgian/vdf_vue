@@ -8,6 +8,7 @@ import InstantSearch from 'vue-instantsearch'
 import Home from '@/components/Home'
 import AddEvent from '@/components/AddEvent'
 import EventCard from '@/components/EventCard'
+import YearRange from '@/components/YearRange'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 
@@ -15,6 +16,7 @@ Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(InstantSearch)
 
+Vue.component('year-range', YearRange)
 Vue.component('event-card', EventCard)
 
 const router = new VueRouter({

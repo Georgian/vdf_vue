@@ -3,22 +3,30 @@
     index-name='vdf'
     :search-store='searchStore'>
     <v-app id='vdf'>
-      <v-toolbar color='amber' app absolute>
-        <span class='title ml-3 mr-5'>Varf De Forma</span>
-        <div id='search-box'>
-          <ais-search-box></ais-search-box>
-        </div>
-        <v-spacer></v-spacer>
+      <v-toolbar color='amber' app>
+        <v-container grid-list-xl>
+          <v-layout row wrap>
+            <v-flex px-0>
+              <span class="title">Varf de Forma</span>
+            </v-flex>
+              <v-text-field
+                solo-inverted
+                flat
+                label="Cauta eveniment"
+                prepend-icon="search">
+              </v-text-field>
+          </v-layout>
+        </v-container>
       </v-toolbar>
       <v-content>
         <v-container grid-list-xl>
           <v-layout row wrap>
             <v-flex lg2>
               <v-layout column>
-                <h1>Name</h1>
-                <ais-refinement-list attribute-name='sport' :class-names="{'ais-refinement-list__count': 'tag'}"></ais-refinement-list>
-                <h1>Discipline</h1>
+                <h1>Disciplina</h1>
                 <ais-refinement-list attribute-name='discipline' :class-names="{'ais-refinement-list__count': 'tag'}"></ais-refinement-list>
+                <h1>Organizator</h1>
+                <ais-refinement-list attribute-name='organizer' :class-names="{'ais-refinement-list__count': 'tag'}"></ais-refinement-list>
               </v-layout>
             </v-flex>
             <v-flex lg10>
@@ -41,49 +49,74 @@
 import { createFromAlgoliaClient } from 'vue-instantsearch'
 import axios from 'axios'
 
+var aisResultObject = {
+  // 'hits': [
+  //   {
+  //     'name': 'Sony - PlayStation 3 The Last of Us Bundle - 500GB',
+  //     '_highlightResult': {
+  //       'name': {
+  //         'value': 'Sony - __ais-highlight__PlayStation__/ais-highlight__ 3 The Last of __ais-highlight__Us__/ais-highlight__ Bundle - __ais-highlight__500GB__/ais-highlight__'
+  //       }
+  //     }
+  //   }
+  // ],
+  // 'facets': {
+  //   'sport': {
+  //     'MTB': 1
+  //   }
+  // },
+  'nbHits': 1,
+  'page': 0,
+  'nbPages': 1,
+  'hitsPerPage': 20,
+  'processingTimeMS': 3,
+  'exhaustiveNbHits': true,
+  'query': 'playstation4 (500gb) us ',
+  'params': 'query=playstation4%20(500gb)%20us%20&page=0&highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&facets=%5B%5D&tagFilters=',
+  'index': 'vdf'
+}
+
 var result = {
-  'results': [
-    {
-      // 'hits': [
-      //   {
-      //     'name': 'Sony - PlayStation 3 The Last of Us Bundle - 500GB',
-      //     '_highlightResult': {
-      //       'name': {
-      //         'value': 'Sony - __ais-highlight__PlayStation__/ais-highlight__ 3 The Last of __ais-highlight__Us__/ais-highlight__ Bundle - __ais-highlight__500GB__/ais-highlight__'
-      //       }
-      //     }
-      //   }
-      // ],
-      'facets': {
-        'sport': {
-          'MTB': 1
-        }
-      },
-      'nbHits': 1,
-      'page': 0,
-      'nbPages': 1,
-      'hitsPerPage': 20,
-      'processingTimeMS': 3,
-      'exhaustiveNbHits': true,
-      'query': 'playstation4 (500gb) us ',
-      'params': 'query=playstation4%20(500gb)%20us%20&page=0&highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&facets=%5B%5D&tagFilters=',
-      'index': 'vdf'
-    }
-  ]
+  'results': [ ]
 }
 
 const client = {
   search (requests) {
-    // var allEvents = axios.get('/api/event')
-    //
-    // result.hits = allEvents
+    var requestLink = '/api/event'
+    var facetsArray = requests[0].params.facetFilters
+    if (facetsArray != null) {
+      requestLink = requestLink + '?'
+      facetsArray.forEach(function (singleFacetArray) {
+        singleFacetArray.forEach(function (facetAsString) {
+          var facet = facetAsString.split(':')
+          requestLink = requestLink + '&' + facet[0] + '=' + facet[1]
+        })
+      })
+    }
 
-    return axios.get('/api/event').then((r) => {
-      result.results[0].hits = r.data
+    return axios.get(requestLink).then((r) => {
+      var events = r.data
+
+      var facets = {}
+      facets.discipline = {}
+      facets.organizer = {}
+
+      events.forEach(function (e) {
+        if (e.discipline != null) {
+          var currentDisciplineCount = facets.discipline[e.discipline]
+          facets.discipline[e.discipline] = currentDisciplineCount == null ? '1' : currentDisciplineCount + 1
+        }
+        if (e.organizer != null) {
+          var currentOrganizerCount = facets.organizer[e.organizer]
+          facets.organizer[e.organizer] = currentOrganizerCount == null ? '1' : currentOrganizerCount + 1
+        }
+      })
+
+      aisResultObject.hits = events
+      aisResultObject.facets = facets
+      result.results.push(aisResultObject)
       return result
     })
-
-    // return Promise.resolve(result)
   }
 }
 
@@ -93,16 +126,14 @@ export default {
   data: () => ({
     drawer: null,
     searchStore: store
-  }),
-  methods: {
-    updateText: function () {
-      axios.get('/api/event').then((r) => {
-        this.text = r.data
-      })
-    }
-  },
-  mounted () {
-    this.updateText()
-  }
+  })
+  // methods: {
+  //   updateText: function (text) {
+  //     this.text = text
+  //   }
+  // },
+  // mounted () {
+  //   this.updateText()
+  // }
 }
 </script>
