@@ -9,6 +9,7 @@ import Home from '@/components/Home'
 import AddEvent from '@/components/AddEvent'
 import EventCard from '@/components/EventCard'
 import YearRange from '@/components/YearRange'
+import Input from '@/components/Input'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 
@@ -18,6 +19,7 @@ Vue.use(InstantSearch)
 
 Vue.component('year-range', YearRange)
 Vue.component('event-card', EventCard)
+Vue.component('vdf-input', Input)
 
 const router = new VueRouter({
   mode: 'history',

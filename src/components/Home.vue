@@ -3,18 +3,13 @@
     index-name='vdf'
     :search-store='searchStore'>
     <v-app id='vdf'>
-      <v-toolbar color='amber' app>
+      <v-toolbar color='amber' height="100px">
         <v-container grid-list-xl>
           <v-layout row wrap>
             <v-flex px-0>
               <span class="title">Varf de Forma</span>
             </v-flex>
-              <v-text-field
-                solo-inverted
-                flat
-                label="Cauta eveniment"
-                prepend-icon="search">
-              </v-text-field>
+            <vdf-input />
           </v-layout>
         </v-container>
       </v-toolbar>
@@ -82,15 +77,28 @@ var result = {
 
 const client = {
   search (requests) {
-    var requestLink = '/api/event'
+    var requestParams = []
+
     var facetsArray = requests[0].params.facetFilters
     if (facetsArray != null) {
-      requestLink = requestLink + '?'
       facetsArray.forEach(function (singleFacetArray) {
         singleFacetArray.forEach(function (facetAsString) {
           var facet = facetAsString.split(':')
-          requestLink = requestLink + '&' + facet[0] + '=' + facet[1]
+          requestParams.push(facet[0] + '=' + facet[1])
         })
+      })
+    }
+
+    var query = requests[0].params.query
+    if (query) {
+      requestParams.push('query=' + query)
+    }
+
+    var requestLink = '/api/event'
+    if (requestParams.length !== 0) {
+      requestLink = requestLink + '?'
+      requestParams.forEach(function (rp) {
+        requestLink = requestLink + '&' + rp
       })
     }
 
@@ -104,11 +112,11 @@ const client = {
       events.forEach(function (e) {
         if (e.discipline != null) {
           var currentDisciplineCount = facets.discipline[e.discipline]
-          facets.discipline[e.discipline] = currentDisciplineCount == null ? '1' : currentDisciplineCount + 1
+          facets.discipline[e.discipline] = currentDisciplineCount == null ? '1' : parseInt(currentDisciplineCount) + 1
         }
         if (e.organizer != null) {
           var currentOrganizerCount = facets.organizer[e.organizer]
-          facets.organizer[e.organizer] = currentOrganizerCount == null ? '1' : currentOrganizerCount + 1
+          facets.organizer[e.organizer] = currentOrganizerCount == null ? '1' : parseInt(currentOrganizerCount) + 1
         }
       })
 
