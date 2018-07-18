@@ -5,20 +5,23 @@ import Vuetify from 'vuetify'
 import App from './App'
 import VueRouter from 'vue-router'
 import InstantSearch from 'vue-instantsearch'
+import AlgoliaSearchHelper from 'algoliasearch-helper'
 import Home from '@/components/Home'
 import AddEvent from '@/components/AddEvent'
 import EventCard from '@/components/EventCard'
-import YearRange from '@/components/YearRange'
+import SportFilter from '@/components/SportFilter'
 import Input from '@/components/Input'
+import Login from '@/components/Login'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 Vue.use(InstantSearch)
+Vue.use(AlgoliaSearchHelper)
 
-Vue.component('year-range', YearRange)
 Vue.component('event-card', EventCard)
+Vue.component('vdf-sport-filter', SportFilter)
 Vue.component('vdf-input', Input)
 
 const router = new VueRouter({
@@ -33,6 +36,11 @@ const router = new VueRouter({
       path: '/event',
       name: 'AddEvent',
       component: AddEvent
+    },
+    {
+      path: '/account/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

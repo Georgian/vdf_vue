@@ -18,10 +18,18 @@
           <v-layout row wrap>
             <v-flex lg2>
               <v-layout column>
+                <h1>Sport</h1>
+                <sport-filter></sport-filter>
                 <h1>Disciplina</h1>
-                <ais-refinement-list attribute-name='discipline' :class-names="{'ais-refinement-list__count': 'tag'}"></ais-refinement-list>
+                <ais-refinement-list attribute-name='discipline'
+                                     :class-names="{'ais-refinement-list__count': 'tag'}"
+                                     :sort-by="['count:desc', 'name:asc']">
+                </ais-refinement-list>
                 <h1>Organizator</h1>
-                <ais-refinement-list attribute-name='organizer' :class-names="{'ais-refinement-list__count': 'tag'}"></ais-refinement-list>
+                <ais-refinement-list attribute-name='organizer'
+                                     :class-names="{'ais-refinement-list__count': 'tag'}"
+                                     :sort-by="['count:desc', 'name:asc']">
+                </ais-refinement-list>
               </v-layout>
             </v-flex>
             <v-flex lg10>
@@ -41,8 +49,11 @@
 </template>
 
 <script>
-import { createFromAlgoliaClient } from 'vue-instantsearch'
+// import { createFromAlgoliaClient } from 'vue-instantsearch'
+import { Store } from 'vue-instantsearch'
+import { AlgoliaSearchHelper } from 'algoliasearch-helper'
 import axios from 'axios'
+import SportFilter from './SportFilter'
 
 var aisResultObject = {
   // 'hits': [
@@ -82,10 +93,15 @@ const client = {
     var facetsArray = requests[0].params.facetFilters
     if (facetsArray != null) {
       facetsArray.forEach(function (singleFacetArray) {
-        singleFacetArray.forEach(function (facetAsString) {
-          var facet = facetAsString.split(':')
+        if (typeof singleFacetArray === 'string' || singleFacetArray instanceof String) {
+          var facet = singleFacetArray.split(':')
           requestParams.push(facet[0] + '=' + facet[1])
-        })
+        } else {
+          singleFacetArray.forEach(function (facetAsString) {
+            var facet = facetAsString.split(':')
+            requestParams.push(facet[0] + '=' + facet[1])
+          })
+        }
       })
     }
 
@@ -106,17 +122,23 @@ const client = {
       var events = r.data
 
       var facets = {}
+      facets.sport = {}
       facets.discipline = {}
       facets.organizer = {}
+      facets.sport = {}
 
       events.forEach(function (e) {
+        if (e.sport != null) {
+          var currentSportCount = facets.sport[e.sport]
+          facets.sport[e.sport] = currentSportCount == null ? 1 : parseInt(currentSportCount) + 1
+        }
         if (e.discipline != null) {
           var currentDisciplineCount = facets.discipline[e.discipline]
-          facets.discipline[e.discipline] = currentDisciplineCount == null ? '1' : parseInt(currentDisciplineCount) + 1
+          facets.discipline[e.discipline] = currentDisciplineCount == null ? 1 : parseInt(currentDisciplineCount) + 1
         }
         if (e.organizer != null) {
           var currentOrganizerCount = facets.organizer[e.organizer]
-          facets.organizer[e.organizer] = currentOrganizerCount == null ? '1' : parseInt(currentOrganizerCount) + 1
+          facets.organizer[e.organizer] = currentOrganizerCount == null ? 1 : parseInt(currentOrganizerCount) + 1
         }
       })
 
@@ -128,9 +150,16 @@ const client = {
   }
 }
 
-const store = createFromAlgoliaClient(client)
+// const store = createFromAlgoliaClient(client)
+
+const helper = new AlgoliaSearchHelper(client, 'vdf', {
+  facets: ['discipline', 'organizer', 'sport']
+})
+
+const store = new Store(helper)
 
 export default {
+  components: {SportFilter},
   data: () => ({
     drawer: null,
     searchStore: store
