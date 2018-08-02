@@ -12,6 +12,7 @@ import EventCard from '@/components/EventCard'
 import SportFilter from '@/components/SportFilter'
 import Input from '@/components/Input'
 import Login from '@/components/Login'
+import '@/plugins/fb-sdk.js'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 

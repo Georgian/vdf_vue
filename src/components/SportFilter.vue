@@ -2,7 +2,7 @@
   <div>
     <!--<v-flex v-for="sport in allSports()" :key="sport" xs4>-->
       <v-btn-toggle v-model="sportToggle">
-        <v-btn flat value="All"   v-on:click="showOnly('All')">All</v-btn>
+        <v-btn flat value="All"   v-on:click="showOnly('All')">TOATE</v-btn>
         <v-btn flat value="MTB"   v-on:click="showOnly('MTB')">MTB</v-btn>
         <v-btn flat value="Sosea" v-on:click="showOnly('Sosea')">Sosea</v-btn>
       </v-btn-toggle>

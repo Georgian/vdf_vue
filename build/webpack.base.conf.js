@@ -38,6 +38,9 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  externals: {
+    fb: ''
+  },
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
