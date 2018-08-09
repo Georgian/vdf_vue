@@ -110,7 +110,8 @@ const client = {
       requestParams.push('query=' + query)
     }
 
-    var requestLink = '/api/event'
+    // var requestLink = 'http://varfdeforma.us-east-2.elasticbeanstalk.com/api/event'
+    var requestLink = process.env.API_BASE_URL + '/event'
     if (requestParams.length !== 0) {
       requestLink = requestLink + '?'
       requestParams.forEach(function (rp) {
