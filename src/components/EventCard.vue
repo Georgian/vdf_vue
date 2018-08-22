@@ -1,38 +1,26 @@
 <template>
-  <v-card>
+  <v-card height="100%" hover>
     <v-card-media
       :src="vdfEvent.photoLink"
       height="200px"
     ></v-card-media>
 
-    <v-card-title primary-title>
-      <v-flex xs12 py-10>
-        <h2 class="headline mb-0">{{vdfEvent.name}}</h2>
-      </v-flex>
-      <v-flex xs6 py-1>
-        <v-icon>fas fa-calendar-alt</v-icon> {{vdfEvent.date}}
-      </v-flex>
-      <v-flex xs6 py-1>
-        <v-icon>fas fa-map-marker-alt</v-icon> {{vdfEvent.locationName}}
-      </v-flex>
-      <v-flex xs6 py-1>
-        <v-icon>fas fa-bicycle</v-icon> {{vdfEvent.sport}}
-      </v-flex>
-      <v-flex xs6 py-1>
-        <v-icon>fas fa-chevron-right</v-icon> {{vdfEvent.discipline}}
-      </v-flex>
-      <v-flex xs6 py-1>
-        <v-icon>fas fa-dollar-sign</v-icon> {{vdfEvent.price}}
-      </v-flex>
-    </v-card-title>
     <v-card-text>
-      <v-flex xs12 py-0>
-        {{vdfEvent.description}}
-      </v-flex>
+      <h3>{{vdfEvent.name}}</h3>
+    </v-card-text>
+
+    <v-card-text class='py-0'>
+      <v-chip label outline color="secondary">{{vdfEvent.discipline}}</v-chip>
+      <v-chip label outline color="secondary">{{vdfEvent.date}}</v-chip>
+      <v-chip label outline color="secondary"><a v-bind:href="'http://google.com/maps/place/' + vdfEvent.locationCoordinates" target="_blank" >{{vdfEvent.locationName}}</a> </v-chip>
+    </v-card-text>
+
+    <v-card-text>
+      {{vdfEvent.description.substring(0, 100)}}...
     </v-card-text>
 
     <v-card-actions>
-      <v-btn flat color="orange" :href="vdfEvent.registrationLink" target="_blank">Inscriere</v-btn>
+      <v-btn flat color="accent" :href="vdfEvent.registrationLink" target="_blank">Inscriere</v-btn>
     </v-card-actions>
   </v-card>
 </template>

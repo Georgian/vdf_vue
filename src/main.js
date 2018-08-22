@@ -16,7 +16,14 @@ import '@/plugins/fb-sdk.js'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#5AB9EA',
+    secondary: '#84CEEB',
+    accent: '#8860D0',
+    bckgrnd: '#C1C8E4'
+  }
+})
 Vue.use(VueRouter)
 Vue.use(InstantSearch)
 Vue.use(AlgoliaSearchHelper)

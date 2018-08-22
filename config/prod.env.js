@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  API_BASE_URL: "'http://varfdeforma.us-east-2.elasticbeanstalk.com/'"
+  API_BASE_URL: "'https://api.varfdeforma.ro/'"
 }

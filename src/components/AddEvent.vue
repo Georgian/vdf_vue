@@ -17,6 +17,10 @@
         v-model="discipline"
         label="Disciplina"
       ></v-text-field>
+      <v-text-field
+        v-model="organizer"
+        label="Organizator"
+      ></v-text-field>
       <v-flex xs12 sm6 md4>
         <v-menu
           ref="menu"

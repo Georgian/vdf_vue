@@ -3,11 +3,11 @@
     index-name='vdf'
     :search-store='searchStore'>
     <v-app id='vdf'>
-      <v-toolbar color='amber' height="100px">
+      <v-toolbar color='primary' height="100px">
         <v-container grid-list-xl>
           <v-layout row wrap>
             <v-flex px-0>
-              <span class="title">Varf de Forma</span>
+              <h1>Vârf de Formă</h1>
             </v-flex>
             <vdf-input />
           </v-layout>
@@ -16,20 +16,30 @@
       <v-content>
         <v-container grid-list-xl>
           <v-layout row wrap>
-            <v-flex lg2>
+            <v-flex lg2 pl-0>
               <v-layout column>
-                <h1>Sport</h1>
-                <sport-filter></sport-filter>
-                <h1>Disciplina</h1>
-                <ais-refinement-list attribute-name='discipline'
-                                     :class-names="{'ais-refinement-list__count': 'tag'}"
-                                     :sort-by="['count:desc', 'name:asc']">
-                </ais-refinement-list>
-                <h1>Organizator</h1>
-                <ais-refinement-list attribute-name='organizer'
-                                     :class-names="{'ais-refinement-list__count': 'tag'}"
-                                     :sort-by="['count:desc', 'name:asc']">
-                </ais-refinement-list>
+
+                <v-flex>
+                  <h1>Sport</h1>
+                  <sport-filter></sport-filter>
+                </v-flex>
+
+                <v-flex>
+                  <h1>Disciplina</h1>
+                  <ais-refinement-list attribute-name='discipline'
+                                       :class-names="{'ais-refinement-list__count': 'tag'}"
+                                       :sort-by="['count:desc', 'name:asc']">
+                  </ais-refinement-list>
+                </v-flex>
+
+                <v-flex>
+                  <h1>Organizator</h1>
+                  <ais-refinement-list attribute-name='organizer'
+                                       :class-names="{'ais-refinement-list__count': 'tag'}"
+                                       :sort-by="['count:desc', 'name:asc']">
+                  </ais-refinement-list>
+                </v-flex>
+
               </v-layout>
             </v-flex>
             <v-flex lg10>
@@ -44,6 +54,13 @@
           </v-layout>
         </v-container>
       </v-content>
+
+      <v-footer height="auto" color="primary" class="text-xs-center">
+        <v-card-text class="white--text">
+            &copy;2018 — <strong>varfdeforma.ro</strong> — Contact: <strong>admin@varfdeforma.ro</strong>
+          </v-card-text>
+      </v-footer>
+
     </v-app>
   </ais-index>
 </template>

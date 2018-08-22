@@ -3,7 +3,7 @@
     v-model.lazy="query"
     solo-inverted
     flat
-    label="Cauta eveniment"
+    label="Caută eveniment"
     prepend-icon="search">
   </v-text-field>
 </template>
