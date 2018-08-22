@@ -113,7 +113,7 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         // Native form submission is not yet supported
-        axios.post('http://localhost:8080/event', {
+        axios.post(process.env.API_BASE_URL + '/event', {
           name: this.name,
           description: this.description,
           sport: this.sport,
