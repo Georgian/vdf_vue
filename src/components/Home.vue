@@ -3,11 +3,11 @@
     index-name='vdf'
     :search-store='searchStore'>
     <v-app id='vdf'>
-      <v-toolbar color='primary' height="100px">
-        <v-container grid-list-xl>
-          <v-layout row wrap>
-            <v-flex px-0>
-              <h1>Vârf de Formă</h1>
+      <v-toolbar color='primary' height="80px">
+        <v-container>
+          <v-layout>
+            <v-flex>
+              <img src='@/assets/logo.png' alt='' style='width:100px;height:40px;'>
             </v-flex>
             <vdf-input />
           </v-layout>
@@ -27,7 +27,6 @@
                 <v-flex>
                   <h1>Disciplina</h1>
                   <ais-refinement-list attribute-name='discipline'
-                                       :class-names="{'ais-refinement-list__count': 'tag'}"
                                        :sort-by="['count:desc', 'name:asc']">
                   </ais-refinement-list>
                 </v-flex>
@@ -35,7 +34,6 @@
                 <v-flex>
                   <h1>Organizator</h1>
                   <ais-refinement-list attribute-name='organizer'
-                                       :class-names="{'ais-refinement-list__count': 'tag'}"
                                        :sort-by="['count:desc', 'name:asc']">
                   </ais-refinement-list>
                 </v-flex>
@@ -192,3 +190,14 @@ export default {
   // }
 }
 </script>
+
+<style>
+.ais-refinement-list__checkbox {
+  margin-right: 5px;
+}
+.ais-refinement-list__count {
+  background: #fff;
+  border: .5px solid #727272;
+  color: #727272;
+}
+</style>

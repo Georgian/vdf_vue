@@ -42,6 +42,12 @@ module.exports = {
     fb: ''
   },
   module: {
+    loaders: [
+      {
+        test: /\.styl$/,
+        loader: 'style-loader!css-loader!stylus-loader'
+      }
+    ],
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
@@ -78,8 +84,8 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
-    ]
-  },
+   ]
+},
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).

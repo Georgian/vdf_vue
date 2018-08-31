@@ -15,10 +15,11 @@ import Login from '@/components/Login'
 import '@/plugins/fb-sdk.js'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
+import './stylus/main.styl'
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#5AB9EA',
+    primary: '#484848',
     secondary: '#84CEEB',
     accent: '#8860D0',
     bckgrnd: '#C1C8E4'
