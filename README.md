@@ -1,12 +1,11 @@
-# "Vârf de Formă" 
+# "Vârf de Formă" https://varfdeforma.ro
 
-> Prod: https://varfdeforma.ro
 > Rougly translated to "Peak Performance", VDF is a personal project written with love and care written in little spare time. 
 
 ## Tech stack
 
-Frontend is VueJS with a few additional plugins, and it's communicating with a Spring backend. 
-These two reside entirely on AWS services. 
+> Frontend is VueJS with a few additional plugins, and it's communicating with a Spring backend. 
+> These two reside entirely on AWS services. 
 
 ## Build Setup
 
