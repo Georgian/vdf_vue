@@ -1,5 +1,5 @@
 <template>
-    <v-card hover>
+    <v-card hover height="100%" class="flexcard">
       <v-card-media
         :src="vdfEvent.photoLink"
         height="200px"
@@ -15,11 +15,12 @@
         <v-chip label outline color="secondary"><a v-bind:href="'http://google.com/maps/place/' + vdfEvent.locationCoordinates" target="_blank" >{{vdfEvent.locationName}}</a> </v-chip>
       </v-card-text>
 
-      <v-card-text grow>
+      <!-- Grow the text card so that the v-card-actions get pushed to the bottom of the card -->
+      <v-card-text class="grow">
         {{vdfEvent.description.substring(0, 100)}}...
       </v-card-text>
 
-      <v-card-actions >
+      <v-card-actions>
         <v-btn flat color="accent" :href="vdfEvent.registrationLink" target="_blank">Inscriere</v-btn>
       </v-card-actions>
     </v-card>
@@ -32,3 +33,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.flexcard {
+  display: flex;
+  flex-direction: column;
+}
+</style>

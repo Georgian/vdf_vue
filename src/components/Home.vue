@@ -47,7 +47,7 @@
                   <v-tab ripple>Listă</v-tab>
                   <v-tab-item>
                     <v-layout row wrap>
-                      <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" xs4>
+                      <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" xs4 justify-end>
                         <event-card :vdfEvent=vdfEvent></event-card>
                       </v-flex>
                     </v-layout>
@@ -194,7 +194,13 @@ export default {
   data: () => ({
     drawer: null,
     searchStore: store
-  })
+  }),
+  methods: {
+    getMarkerLocation: function (locationCoordinates) {
+      let split = locationCoordinates.split(',')
+      return {lat: parseFloat(split[0]), lng: parseFloat(split[1])}
+    }
+  }
 }
 </script>
 
