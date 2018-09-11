@@ -16,7 +16,7 @@
       <v-content>
         <v-container grid-list-xl>
           <v-layout row wrap>
-            <v-flex lg2 pl-0>
+            <v-flex lg2 pl-0 hidden-md-and-down>
               <v-layout column>
 
                 <v-flex>
@@ -47,7 +47,7 @@
                   <v-tab ripple>Listă</v-tab>
                   <v-tab-item>
                     <v-layout row wrap>
-                      <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" xs4 justify-end>
+                      <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12 justify-end>
                         <event-card :vdfEvent=vdfEvent></event-card>
                       </v-flex>
                     </v-layout>
@@ -66,6 +66,11 @@
       </v-content>
 
       <v-footer height="auto" color="primary" class="text-xs-center">
+        <cookie-law
+          theme="blood-orange"
+          message="Acest website folosește cookie-uri pentru a furniza vizitatorilor o experiență mult mai bună de navigare și servicii adaptate nevoilor și interesului fiecăruia."
+          buttonText="Am înțeles!">
+        </cookie-law>
         <v-card-text class="white--text">
             &copy;2018 — <strong>varfdeforma.ro</strong> — Contact: <strong>admin@varfdeforma.ro</strong>
           </v-card-text>
@@ -81,6 +86,7 @@ import { AlgoliaSearchHelper } from 'algoliasearch-helper'
 import axios from 'axios'
 import SportFilter from './SportFilter'
 import VdfMap from './Map'
+import CookieLaw from 'vue-cookie-law'
 
 var aisResultObject = {
   // 'hits': [
@@ -189,7 +195,8 @@ const store = new Store(helper)
 export default {
   components: {
     VdfMap,
-    SportFilter
+    SportFilter,
+    CookieLaw
   },
   data: () => ({
     drawer: null,

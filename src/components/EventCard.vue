@@ -16,8 +16,8 @@
       </v-card-text>
 
       <!-- Grow the text card so that the v-card-actions get pushed to the bottom of the card -->
-      <v-card-text class="grow">
-        {{vdfEvent.description.substring(0, 100)}}...
+      <v-card-text class="grow" style="min-height: 0; ">
+        {{vdfEvent.description | truncate(100, '...')}}
       </v-card-text>
 
       <v-card-actions>
