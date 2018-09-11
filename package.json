@@ -29,6 +29,7 @@
     "vue-fontawesome": "0.0.2",
     "vue-instantsearch": "^1.7.0",
     "vue-router": "^3.0.1",
+    "vue2-google-maps": "^0.10.2",
     "vuetify": "^1.0.19"
   },
   "devDependencies": {

@@ -42,11 +42,23 @@
             </v-flex>
             <v-flex lg10>
               <ais-results inline-template>
-                <v-layout row wrap>
-                  <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" xs4>
-                    <event-card :vdfEvent=vdfEvent></event-card>
-                  </v-flex>
-                </v-layout>
+                <v-tabs dark>
+
+                  <v-tab ripple>Listă</v-tab>
+                  <v-tab-item>
+                    <v-layout row wrap>
+                      <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" xs4>
+                        <event-card :vdfEvent=vdfEvent></event-card>
+                      </v-flex>
+                    </v-layout>
+                  </v-tab-item>
+
+                  <v-tab>Hartă</v-tab>
+                  <v-tab-item>
+                    <vdf-map :vdfEvents="results"></vdf-map>
+                  </v-tab-item>
+
+                </v-tabs>
               </ais-results>
             </v-flex>
           </v-layout>
@@ -64,11 +76,11 @@
 </template>
 
 <script>
-// import { createFromAlgoliaClient } from 'vue-instantsearch'
 import { Store } from 'vue-instantsearch'
 import { AlgoliaSearchHelper } from 'algoliasearch-helper'
 import axios from 'axios'
 import SportFilter from './SportFilter'
+import VdfMap from './Map'
 
 var aisResultObject = {
   // 'hits': [
@@ -175,19 +187,14 @@ const helper = new AlgoliaSearchHelper(client, 'vdf', {
 const store = new Store(helper)
 
 export default {
-  components: {SportFilter},
+  components: {
+    VdfMap,
+    SportFilter
+  },
   data: () => ({
     drawer: null,
     searchStore: store
   })
-  // methods: {
-  //   updateText: function (text) {
-  //     this.text = text
-  //   }
-  // },
-  // mounted () {
-  //   this.updateText()
-  // }
 }
 </script>
 

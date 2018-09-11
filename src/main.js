@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import * as VueGoogleMaps from 'vue2-google-maps'
 import App from './App'
 import VueRouter from 'vue-router'
 import InstantSearch from 'vue-instantsearch'
@@ -9,6 +10,7 @@ import AlgoliaSearchHelper from 'algoliasearch-helper'
 import Home from '@/components/Home'
 import AddEvent from '@/components/AddEvent'
 import EventCard from '@/components/EventCard'
+import Map from '@/components/Map'
 import SportFilter from '@/components/SportFilter'
 import Input from '@/components/Input'
 import Login from '@/components/Login'
@@ -25,11 +27,19 @@ Vue.use(Vuetify, {
     bckgrnd: '#C1C8E4'
   }
 })
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA',
+    libraries: 'map'
+  }
+})
+
 Vue.use(VueRouter)
 Vue.use(InstantSearch)
 Vue.use(AlgoliaSearchHelper)
 
 Vue.component('event-card', EventCard)
+Vue.component('vdf-map', Map)
 Vue.component('vdf-sport-filter', SportFilter)
 Vue.component('vdf-input', Input)
 
