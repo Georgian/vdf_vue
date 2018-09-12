@@ -9,6 +9,11 @@
       <p>"Vârf de Formă" nu își asumă corectitudinea informațiilor despre evenimentele afișate. Aceste evenimente pot suferi
       modificări de ultimă oră fără ca moderatorii "Vârf de Formă" să fie conștienți de aceste schimbări. La momentul actual,
       "Vârf de Formă" nu are o comunicare strânsă cu organizatorii evenimentelor.</p>
+
+      <p>...</p>
+      <p>...</p>
+      <p>...</p>
+      [în completare]
     </v-container>
   </v-content>
 </template>

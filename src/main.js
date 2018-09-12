@@ -10,6 +10,7 @@ import AlgoliaSearchHelper from 'algoliasearch-helper'
 import Home from '@/components/Home'
 import Terms from '@/components/Terms'
 import AddEvent from '@/components/AddEvent'
+import PageNotFound from '@/components/PageNotFound'
 import EventCard from '@/components/EventCard'
 import Map from '@/components/Map'
 import SportFilter from '@/components/SportFilter'
@@ -94,6 +95,11 @@ const router = new VueRouter({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '*',
+      name: 'PageNotFound',
+      component: PageNotFound
     },
     {
       path: '/termeni',
