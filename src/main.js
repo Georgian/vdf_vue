@@ -8,12 +8,10 @@ import VueRouter from 'vue-router'
 import InstantSearch from 'vue-instantsearch'
 import AlgoliaSearchHelper from 'algoliasearch-helper'
 import Home from '@/components/Home'
-import AddEvent from '@/components/AddEvent'
 import EventCard from '@/components/EventCard'
 import Map from '@/components/Map'
 import SportFilter from '@/components/SportFilter'
 import Input from '@/components/Input'
-import Login from '@/components/Login'
 import '@/plugins/fb-sdk.js'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
@@ -59,17 +57,17 @@ const router = new VueRouter({
       path: '/',
       name: 'Home',
       component: Home
-    },
-    {
-      path: '/event',
-      name: 'AddEvent',
-      component: AddEvent
-    },
-    {
-      path: '/account/login',
-      name: 'Login',
-      component: Login
     }
+    // {
+    //   path: '/event',
+    //   name: 'AddEvent',
+    //   component: AddEvent
+    // },
+    // {
+    //   path: '/account/login',
+    //   name: 'Login',
+    //   component: Login
+    // }
   ]
 })
 

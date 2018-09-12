@@ -3,12 +3,10 @@
     index-name='vdf'
     :search-store='searchStore'>
     <v-app id='vdf'>
-      <v-toolbar color='primary' height="80px">
+      <v-toolbar color='primary' height="70px">
         <v-container>
           <v-layout>
-            <v-flex>
-              <img src='@/assets/logo.png' alt='' style='width:100px;height:40px;'>
-            </v-flex>
+            <v-flex><img src='@/assets/logo.png' alt='' style='width:100px;height:40px;cursor:pointer'></v-flex>
             <vdf-input />
           </v-layout>
         </v-container>
@@ -216,8 +214,6 @@ export default {
   margin-right: 5px;
 }
 .ais-refinement-list__count {
-  background: #fff;
-  border: .5px solid #727272;
-  color: #727272;
+  color: #8860D0;
 }
 </style>
