@@ -9,7 +9,7 @@ import InstantSearch from 'vue-instantsearch'
 import AlgoliaSearchHelper from 'algoliasearch-helper'
 import Home from '@/components/Home'
 import Terms from '@/components/Terms'
-import AddEvent from '@/components/AddEvent'
+import EventPage from '@/components/EventPage'
 import PageNotFound from '@/components/PageNotFound'
 import EventCard from '@/components/EventCard'
 import Map from '@/components/Map'
@@ -22,10 +22,10 @@ import './stylus/main.styl'
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#484848',
-    secondary: '#84CEEB',
-    accent: '#8860D0',
-    bckgrnd: '#C1C8E4'
+    primary: '#F5F5F5'
+    // secondary: '#84CEEB',
+    // accent: '#8860D0',
+    // bckgrnd: '#FAFAFA'
   }
 })
 Vue.use(VueGoogleMaps, {
@@ -107,10 +107,16 @@ const router = new VueRouter({
       component: Terms
     },
     {
-      path: '/event',
-      name: 'AddEvent',
-      component: AddEvent
+      path: '/event/:vdfEventId',
+      name: 'EventPage',
+      component: EventPage,
+      props: true
     }
+    // {
+    //   path: '/event',
+    //   name: 'AddEvent',
+    //   component: AddEvent
+    // },
     // {
     //   path: '/account/login',
     //   name: 'Login',

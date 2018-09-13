@@ -2,7 +2,7 @@
   <v-content>
     <v-container fluid fill-height>
       <v-layout justify-center align-center>
-        <h1 style="color:red;text-align: justify">
+        <h1 style="color:red;text-align:justify">
           404: Pagina nu există. Boss, te-ai pierdut?
         </h1>
         <h1></h1>

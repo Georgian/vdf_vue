@@ -1,5 +1,5 @@
 <template>
-    <v-card hover height="100%" class="flexcard">
+    <v-card hover height="100%" class="flexcard" @click.native="goToEvent">
       <v-card-media
         :src="vdfEvent.photoLink"
         height="200px"
@@ -11,12 +11,12 @@
 
       <v-card-text class='py-0'>
         <v-chip label outline color="secondary">{{vdfEvent.discipline}}</v-chip>
-        <v-chip label outline color="secondary">{{vdfEvent.date}}</v-chip>
+        <v-chip label outline color="secondary">{{vdfEvent.dateStart}}</v-chip>
         <v-chip label outline color="secondary"><a v-bind:href="'http://google.com/maps/place/' + vdfEvent.locationCoordinates" target="_blank" >{{vdfEvent.locationName}}</a> </v-chip>
       </v-card-text>
 
       <!-- Grow the text card so that the v-card-actions get pushed to the bottom of the card -->
-      <v-card-text class="grow" style="min-height: 0; ">
+      <v-card-text class="grow">
         {{vdfEvent.description | truncate(100, '...')}}
       </v-card-text>
 
@@ -30,6 +30,11 @@
 export default {
   props: {
     vdfEvent: { type: Object, required: true }
+  },
+  methods: {
+    goToEvent () {
+      this.$router.push({path: '/event/' + this.vdfEvent.id})
+    }
   }
 }
 </script>

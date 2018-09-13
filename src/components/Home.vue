@@ -28,15 +28,17 @@
         </v-flex>
         <v-flex lg10>
           <ais-results inline-template>
-            <v-tabs dark>
+            <v-tabs color="primary">
 
               <v-tab ripple>Listă</v-tab>
               <v-tab-item>
-                <v-layout row wrap>
-                  <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12 justify-end>
-                    <event-card :vdfEvent=vdfEvent></event-card>
-                  </v-flex>
-                </v-layout>
+                <v-container row wrap>
+                  <v-layout>
+                    <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12>
+                      <event-card :vdfEvent=vdfEvent></event-card>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
               </v-tab-item>
 
               <v-tab>Hartă</v-tab>
