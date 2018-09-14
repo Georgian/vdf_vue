@@ -4,7 +4,7 @@
     solo-inverted
     flat
     label="Caută eveniment"
-    prepend-icon="search">
+    prepend-inner-icon="search">
   </v-text-field>
 </template>
 

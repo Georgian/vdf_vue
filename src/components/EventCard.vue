@@ -1,15 +1,17 @@
 <template>
     <v-card hover height="100%" class="flexcard" @click.native="goToEvent">
-      <v-card-media
+
+      <v-img
         :src="vdfEvent.photoLink"
         height="200px"
-      ></v-card-media>
+        max-height="200px"
+      ></v-img>
 
       <v-card-text>
         <h3>{{vdfEvent.name}}</h3>
       </v-card-text>
 
-      <v-card-text class='py-0'>
+      <v-card-text>
         <v-chip label outline color="secondary">{{vdfEvent.discipline}}</v-chip>
         <v-chip label outline color="secondary">{{vdfEvent.dateStart}}</v-chip>
         <v-chip label outline color="secondary"><a v-bind:href="'http://google.com/maps/place/' + vdfEvent.locationCoordinates" target="_blank" >{{vdfEvent.locationName}}</a> </v-chip>

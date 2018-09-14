@@ -32,11 +32,11 @@
 
               <v-tab ripple>Listă</v-tab>
               <v-tab-item>
-                <v-container row wrap>
-                  <v-layout>
-                    <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12>
-                      <event-card :vdfEvent=vdfEvent></event-card>
-                    </v-flex>
+                <v-container grid-list-md>
+                  <v-layout row wrap xs12>
+                      <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12>
+                        <event-card :vdfEvent=vdfEvent></event-card>
+                      </v-flex>
                   </v-layout>
                 </v-container>
               </v-tab-item>

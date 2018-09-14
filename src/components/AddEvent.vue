@@ -99,7 +99,7 @@ export default {
     sport: '',
     discipline: '',
     organizer: '',
-    date: '',
+    dateStart: '',
     timeSchedule: '',
     price: '',
     locationName: '',

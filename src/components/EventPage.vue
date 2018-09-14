@@ -9,7 +9,10 @@
           Eroare!
         </v-card>
 
-        <v-img :aspect-ratio="16/9" src="vdfEvent.photoLink"></v-img>
+        <v-flex>
+          <v-img width="815px" :src="vdfEvent.photoLink"></v-img>
+        </v-flex>
+
       </v-layout>
     </v-container>
 </template>
