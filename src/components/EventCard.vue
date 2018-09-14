@@ -7,15 +7,26 @@
         max-height="200px"
       ></v-img>
 
-      <v-card-text>
-        <h3>{{vdfEvent.name}}</h3>
-      </v-card-text>
+      <v-flex pt-10 pb-10><h3>{{vdfEvent.name}}</h3></v-flex>
 
-      <v-card-text>
-        <v-chip label outline color="secondary">{{vdfEvent.discipline}}</v-chip>
-        <v-chip label outline color="secondary">{{vdfEvent.dateStart}}</v-chip>
-        <v-chip label outline color="secondary"><a v-bind:href="'http://google.com/maps/place/' + vdfEvent.locationCoordinates" target="_blank" >{{vdfEvent.locationName}}</a> </v-chip>
-      </v-card-text>
+      <v-flex px-0 py-0>
+        <v-flex py-0 align-center justify-center>
+          <font-awesome-icon icon="bicycle"></font-awesome-icon>
+          {{vdfEvent.sport}} {{vdfEvent.discipline}}
+        </v-flex>
+        <v-flex py-0 align-center justify-center>
+          <font-awesome-icon icon="calendar-alt"></font-awesome-icon>
+          {{vdfEvent.dateStart}}
+        </v-flex>
+        <v-flex py-0 align-center justify-center>
+          <font-awesome-icon icon="location-arrow"></font-awesome-icon>
+          {{vdfEvent.locationName}}
+        </v-flex>
+      </v-flex>
+
+      <!--
+            <a v-bind:href="'http://google.com/maps/place/' + vdfEvent.locationCoordinates" target="_blank" >
+      -->
 
       <!-- Grow the text card so that the v-card-actions get pushed to the bottom of the card -->
       <v-card-text class="grow">

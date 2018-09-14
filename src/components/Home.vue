@@ -6,19 +6,19 @@
           <v-layout column>
 
             <v-flex>
-              <h1>Sport</h1>
+              <h3>Sport</h3>
               <sport-filter></sport-filter>
             </v-flex>
 
             <v-flex>
-              <h1>Disciplina</h1>
+              <h3>Disciplina</h3>
               <ais-refinement-list attribute-name='discipline'
                                    :sort-by="['count:desc', 'name:asc']">
               </ais-refinement-list>
             </v-flex>
 
             <v-flex>
-              <h1>Organizator</h1>
+              <h3>Organizator</h3>
               <ais-refinement-list attribute-name='organizer'
                                    :sort-by="['count:desc', 'name:asc']">
               </ais-refinement-list>
