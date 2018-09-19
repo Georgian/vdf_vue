@@ -100,6 +100,7 @@ export default {
     discipline: '',
     organizer: '',
     dateStart: '',
+    dateEnd: '',
     timeSchedule: '',
     price: '',
     locationName: '',

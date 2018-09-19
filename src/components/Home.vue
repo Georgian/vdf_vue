@@ -2,7 +2,7 @@
   <v-content>
     <v-container grid-list-xl>
       <v-layout row wrap>
-        <v-flex lg2 pl-0 hidden-md-and-down>
+        <v-flex lg3 pl-0 hidden-md-and-down>
           <v-layout column>
 
             <v-flex>
@@ -26,7 +26,7 @@
 
           </v-layout>
         </v-flex>
-        <v-flex lg10>
+        <v-flex lg9>
           <ais-results inline-template>
             <v-tabs color="primary">
 
@@ -80,10 +80,5 @@ export default {
 </script>
 
 <style>
-.ais-refinement-list__checkbox {
-  margin-right: 5px;
-}
-.ais-refinement-list__count {
-  color: #8860D0;
-}
+
 </style>

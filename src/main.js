@@ -15,12 +15,13 @@ import EventCard from '@/components/EventCard'
 import Map from '@/components/Map'
 import SportFilter from '@/components/SportFilter'
 import Input from '@/components/Input'
+import VueWeatherWidget from 'vue-weather-widget'
 import '@/plugins/fb-sdk.js'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
 import './stylus/main.styl'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBicycle, faCalendarAlt, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
+import { faBicycle, faCalendarAlt, faLocationArrow, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.use(Vuetify, {
@@ -47,10 +48,12 @@ Vue.component('vdf-map', Map)
 Vue.component('vdf-sport-filter', SportFilter)
 Vue.component('vdf-input', Input)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('weather', VueWeatherWidget)
 
 library.add(faBicycle)
 library.add(faCalendarAlt)
 library.add(faLocationArrow)
+library.add(faHeart)
 
 let filter = function (text, length, clamp) {
   clamp = clamp || '...'
@@ -91,6 +94,26 @@ Vue.directive('showButKeepInner', {
 
   update (el, bindings) {
     bindings.def[bindings.value ? 'wrap' : 'unwrap'](el)
+  }
+})
+
+// ----------------------------
+
+Vue.mixin({
+  methods: {
+    formatDate: function (dateStartString, dateEndString) {
+      let locale = 'ro-RO'
+      let options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' }
+
+      let dateStart = new Date(dateStartString)
+      var result = dateStart.toLocaleDateString(locale, options)
+
+      if (dateEndString) {
+        result = result + ' - ' + new Date(dateEndString).toLocaleDateString(locale, options)
+      }
+
+      return result
+    }
   }
 })
 

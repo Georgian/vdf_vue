@@ -9,16 +9,16 @@
 
       <v-flex pt-10 pb-10><h3>{{vdfEvent.name}}</h3></v-flex>
 
-      <v-flex px-0 py-0>
-        <v-flex py-0 align-center justify-center>
+      <v-flex px-0 py-0 align-center justify-center>
+        <v-flex py-0>
           <font-awesome-icon icon="bicycle"></font-awesome-icon>
           {{vdfEvent.sport}} {{vdfEvent.discipline}}
         </v-flex>
-        <v-flex py-0 align-center justify-center>
+        <v-flex py-0>
           <font-awesome-icon icon="calendar-alt"></font-awesome-icon>
           {{vdfEvent.dateStart}}
         </v-flex>
-        <v-flex py-0 align-center justify-center>
+        <v-flex py-0>
           <font-awesome-icon icon="location-arrow"></font-awesome-icon>
           {{vdfEvent.locationName}}
         </v-flex>
@@ -34,7 +34,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn flat color="accent" :href="vdfEvent.registrationLink" target="_blank">Inscriere</v-btn>
+        <v-btn flat color="accent" :to="{path: 'event/' + vdfEvent.id}" target="_blank">Detalii</v-btn>
       </v-card-actions>
     </v-card>
 </template>
