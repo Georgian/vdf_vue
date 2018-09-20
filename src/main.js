@@ -160,6 +160,9 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  mounted () {
+    document.dispatchEvent(new Event('app.rendered'))
+  },
   components: { App },
   template: '<App/>'
 })
