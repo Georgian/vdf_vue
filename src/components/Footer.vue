@@ -1,14 +1,19 @@
 <template>
   <v-footer height="100px" color="primary" class="text-xs-center">
     <v-layout column>
-      <v-flex mt-10 mb-3>
-          Un proiect pilot dezvoltat cu atenție, din pasiune <font-awesome-icon icon="heart"></font-awesome-icon>
+      <v-flex mt-3 mb-1>
+        Un proiect pilot dezvoltat cu atenție, din pasiune <font-awesome-icon icon="heart"></font-awesome-icon>
       </v-flex>
-      <v-flex mb-10>
-          &copy;2018
-          — <strong>varfdeforma.ro</strong>
-          — <router-link to="/termeni" class="blue--text">Termeni și Condiții</router-link>
-          — Contact: <strong>admin@varfdeforma.ro</strong>
+      <v-flex mb-1>
+        <a href="https://goo.gl/forms/IUP6RC6D4lfGVyx92" style="text-decoration: none;" class="blue--text" target="_blank">
+          Informații greșite? Contribuie aici
+        </a>
+      </v-flex>
+      <v-flex mb-3>
+        &copy;2018
+        — <strong>varfdeforma.ro</strong>
+        — <router-link to="/termeni" style="text-decoration: none;" class="blue--text">Termeni și Condiții</router-link>
+        — Contact: <strong>admin@varfdeforma.ro</strong>
       </v-flex>
     </v-layout>
   </v-footer>

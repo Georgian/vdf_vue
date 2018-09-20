@@ -15,15 +15,20 @@
         <v-layout flex align-center justify-center>
           <v-flex lg6 md6>
             <h1>{{vdfEvent.name}}</h1>
-            <h2>{{vdfEventDates}}</h2>
-            <h2>{{vdfEvent.locationName}}</h2>
+            <h2><font-awesome-icon icon="calendar-alt"></font-awesome-icon> {{vdfEventDates}}</h2>
+            <h2><font-awesome-icon icon="location-arrow"></font-awesome-icon> {{vdfEvent.locationName}}</h2>
+            <a href="https://goo.gl/forms/IUP6RC6D4lfGVyx92" style="text-decoration: none;" class="blue--text" target="_blank">
+              <font-awesome-icon icon="heart"></font-awesome-icon> Informații greșite? Contribuie aici
+            </a>
           </v-flex>
           <v-flex lg6 md6 hidden-sm-and-down>
             <v-img :src="vdfEvent.photoLink"></v-img>
           </v-flex>
         </v-layout>
 
-        <p><span v-html="vdfEvent.description"></span></p>
+        <v-flex py-10>
+          <p><span v-html="vdfEvent.description"></span></p>
+        </v-flex>
 
         <vdf-dir-map :vdf-event="vdfEvent"></vdf-dir-map>
 
