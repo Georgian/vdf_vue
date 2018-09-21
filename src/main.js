@@ -16,6 +16,7 @@ import Map from '@/components/Map'
 import SportFilter from '@/components/SportFilter'
 import Input from '@/components/Input'
 import VueWeatherWidget from 'vue-weather-widget'
+import VueAnalytics from 'vue-analytics'
 import '@/plugins/fb-sdk.js'
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
@@ -154,6 +155,11 @@ const router = new VueRouter({
     //   component: Login
     // }
   ]
+})
+
+Vue.use(VueAnalytics, {
+  id: 'UA-126133683-1',
+  router
 })
 
 /* eslint-disable no-new */

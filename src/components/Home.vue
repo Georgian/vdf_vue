@@ -2,7 +2,7 @@
   <v-content>
     <v-container grid-list-xl>
       <v-layout row wrap>
-        <v-flex lg3 pl-0 hidden-md-and-down>
+        <v-flex lg2 pl-0 hidden-md-and-down>
           <v-layout column>
 
             <v-flex>
@@ -10,23 +10,45 @@
               <sport-filter></sport-filter>
             </v-flex>
 
-            <v-flex>
+            <v-flex pb-5>
               <h3>Disciplina</h3>
-              <ais-refinement-list attribute-name='discipline'
-                                   :sort-by="['count:desc', 'name:asc']">
+              <ais-refinement-list attribute-name='discipline' :sort-by="['count:desc', 'name:asc']" inline-template>
+                <v-layout column>
+                  <v-flex v-for="facet in facetValues" :key="facet.name" my-0 py-0>
+                    <v-layout row align-center justify-center fill-height>
+                      <v-flex my-0 py-0>
+                        <v-checkbox :label=facet.name v-model="facet.isRefined" @change="toggleRefinement(facet)" hide-details></v-checkbox>
+                      </v-flex>
+                      <div class="badge mt-2">
+                        {{ facet.count }}
+                      </div>
+                    </v-layout>
+                  </v-flex>
+                </v-layout>
               </ais-refinement-list>
             </v-flex>
 
             <v-flex>
               <h3>Organizator</h3>
-              <ais-refinement-list attribute-name='organizer'
-                                   :sort-by="['count:desc', 'name:asc']">
+              <ais-refinement-list attribute-name='organizer' :sort-by="['count:desc', 'name:asc']" inline-template>
+                <v-layout column fill-height>
+                  <v-flex v-for="facet in facetValues" :key="facet.name" my-0 py-0>
+                    <v-layout row align-center justify-center fill-height>
+                      <v-flex my-0 py-0>
+                        <v-checkbox :label=facet.name v-model="facet.isRefined" @change="toggleRefinement(facet)" hide-details></v-checkbox>
+                      </v-flex>
+                      <div class="badge mt-2">
+                        {{ facet.count }}
+                      </div>
+                    </v-layout>
+                  </v-flex>
+                </v-layout>
               </ais-refinement-list>
             </v-flex>
 
           </v-layout>
         </v-flex>
-        <v-flex lg9>
+        <v-flex lg10>
           <ais-results inline-template>
             <v-tabs color="primary">
 
@@ -80,5 +102,20 @@ export default {
 </script>
 
 <style>
-
+.v-label {
+  font-size: 14px;
+}
+.badge {
+  float: right;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #777;
+  border-radius: 8px;
+}
 </style>
