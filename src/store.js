@@ -10,7 +10,21 @@ export default new Vuex.Store({
     events: []
   },
   getters: {
-    events: state => state.events
+    events: state => state.events,
+    eventsByFacets: state => facets => {
+      return state.events.filter(event => {
+        let sport = facets.sport
+        if (sport && !sport.includes(event.sport)) { return false }
+
+        let discipline = facets.discipline
+        if (discipline && !discipline.includes(event.discipline)) { return false }
+
+        let organizer = facets.organizer
+        if (organizer && !organizer.includes(event.organizer)) { return false }
+
+        return true
+      })
+    }
   },
   actions: {
     loadEvents ({ commit }) {

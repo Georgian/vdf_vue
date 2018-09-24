@@ -35,35 +35,54 @@ var result = {
 
 const client = {
   search (requests) {
-    var requestParams = []
-
+    /**
+     * Split string of facets (or array) provided by algolia, and retain the facets
+     * in a map, then pass it to our own store.
+     */
     var facetsArray = requests[0].params.facetFilters
+    var requestParams = {}
     if (facetsArray != null) {
       facetsArray.forEach(function (singleFacetArray) {
+        // Some sort of hack because that's how algolia search provides the facet filters.
         if (typeof singleFacetArray === 'string' || singleFacetArray instanceof String) {
           var facet = singleFacetArray.split(':')
-          requestParams.push(facet[0] + '=' + facet[1])
+
+          var key = facet[0]
+          requestParams[key] = requestParams[key] || []
+          requestParams[key].push(facet[1])
         } else {
           singleFacetArray.forEach(function (facetAsString) {
             var facet = facetAsString.split(':')
-            requestParams.push(facet[0] + '=' + facet[1])
+
+            var key = facet[0]
+            requestParams[key] = requestParams[key] || []
+            requestParams[key].push(facet[1])
           })
         }
       })
     }
 
-    var query = requests[0].params.query
-    if (query) {
-      requestParams.push('query=' + query)
-    }
+    /**
+     *
+     * important bit
+     *
+     */
+    var events = store.getters.eventsByFacets(requestParams)
+    /**
+     *
+     *
+     *
+     */
 
-    var events = store.getters.events
-
+    /**
+     * Then tell algolia which facets are we showing, and the count of results
+     *
+     * TODO Maybe gather facets from the request params, if they were provided already
+     */
     var facets = {}
     facets.sport = {}
     facets.discipline = {}
     facets.organizer = {}
-    facets.sport = {}
 
     events.forEach(function (e) {
       if (e.sport != null) {
