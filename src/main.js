@@ -24,6 +24,7 @@ import './stylus/main.styl'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBicycle, faCalendarAlt, faLocationArrow, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import store from './store'
 
 Vue.use(Vuetify, {
   theme: {
@@ -167,5 +168,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
+  store: store,
   template: '<App/>'
 })

@@ -59,6 +59,11 @@ import { Component } from 'vue-instantsearch'
 
 export default {
   mixins: [Component],
+  data () {
+    return {
+      radioGroup: 'radio-1'
+    }
+  },
   methods: {
     showOnly: function (sport) {
       this.searchStore.stop()

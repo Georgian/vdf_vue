@@ -1,5 +1,5 @@
 <template>
-    <v-card hover height="100%" class="flexcard" @click.native="goToEvent">
+    <v-card hover height="500px" class="flexcard" @click.native="goToEvent">
 
       <v-img
         :src="vdfEvent.photoLink"
@@ -7,16 +7,16 @@
         max-height="200px"
       ></v-img>
 
-      <v-flex pt-10 pb-10><h3>{{vdfEvent.name}}</h3></v-flex>
+      <v-flex ><h3>{{vdfEvent.name}}</h3></v-flex>
 
-      <v-flex px-0 py-0 align-center justify-center>
-        <v-flex py-0>
+      <v-flex px-0 pb-0 pt-0 align-center justify-center>
+        <v-flex py-0 text-wrap>
           <font-awesome-icon icon="bicycle"></font-awesome-icon>
           {{vdfEvent.sport}} {{vdfEvent.discipline}}
         </v-flex>
         <v-flex py-0>
           <font-awesome-icon icon="calendar-alt"></font-awesome-icon>
-          {{vdfEvent.dateStart}}
+          {{this.formatDate(vdfEvent.dateStart, null)}}
         </v-flex>
         <v-flex py-0>
           <font-awesome-icon icon="location-arrow"></font-awesome-icon>
