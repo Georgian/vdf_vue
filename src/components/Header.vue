@@ -1,5 +1,6 @@
 <template>
   <v-toolbar>
+    <vue-progress-bar></vue-progress-bar>
     <router-link to="/">
       <span class="title ml-3" style="color: black">Vârf de Formă</span>
       <sup class="mr-5" style="background-color: indianred; font-weight: bold">BETA</sup>

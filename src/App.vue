@@ -34,6 +34,9 @@ export default {
   data: () => ({
     searchStore: algoliaStore
   }),
+  created () {
+    this.$Progress.start()
+  },
   mounted () {
     this.$store.dispatch('loadEvents')
   },

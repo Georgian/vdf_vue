@@ -25,6 +25,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBicycle, faCalendarAlt, faLocationArrow, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import store from './store'
+import VueProgressBar from 'vue-progressbar'
 
 Vue.use(Vuetify, {
   theme: {
@@ -44,6 +45,11 @@ Vue.use(VueGoogleMaps, {
 Vue.use(VueRouter)
 Vue.use(InstantSearch)
 Vue.use(AlgoliaSearchHelper)
+Vue.use(VueProgressBar, {
+  color: '#8860D0',
+  failedColor: 'red',
+  height: '3px'
+})
 
 Vue.component('event-card', EventCard)
 Vue.component('vdf-map', Map)
