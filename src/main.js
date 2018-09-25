@@ -13,7 +13,6 @@ import EventPage from '@/components/EventPage'
 import PageNotFound from '@/components/PageNotFound'
 import EventCard from '@/components/EventCard'
 import Map from '@/components/Map'
-import SportFilter from '@/components/SportFilter'
 import Input from '@/components/Input'
 import VueWeatherWidget from 'vue-weather-widget'
 import VueAnalytics from 'vue-analytics'
@@ -53,7 +52,6 @@ Vue.use(VueProgressBar, {
 
 Vue.component('event-card', EventCard)
 Vue.component('vdf-map', Map)
-Vue.component('vdf-sport-filter', SportFilter)
 Vue.component('vdf-input', Input)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('weather', VueWeatherWidget)

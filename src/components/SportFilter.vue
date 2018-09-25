@@ -58,6 +58,7 @@
 import { Component } from 'vue-instantsearch'
 
 export default {
+  name: 'vdf-sport-filter',
   mixins: [Component],
   data () {
     return {
@@ -73,6 +74,11 @@ export default {
       }
       this.searchStore.start()
       this.searchStore.refresh()
+    }
+  },
+  watch: {
+    radioGroup: function (oldRadioGroup, newRadioGroup) {
+      console.log(newRadioGroup)
     }
   }
 }

@@ -6,8 +6,12 @@
           <v-layout column>
 
             <v-flex>
+              <vdf-misc-filter></vdf-misc-filter>
+            </v-flex>
+
+            <v-flex>
               <h3>Sport</h3>
-              <sport-filter></sport-filter>
+              <vdf-sport-filter></vdf-sport-filter>
             </v-flex>
 
             <v-flex pb-5>
@@ -77,17 +81,19 @@
 </template>
 
 <script>
-import SportFilter from './SportFilter'
+import VdfSportFilter from './SportFilter'
 import VdfMap from './Map'
 import VdfHeader from './Header'
 import VdfFooter from './Footer'
+import VdfMiscFilter from './MiscFilter'
 
 export default {
   components: {
+    VdfMiscFilter,
     VdfFooter,
     VdfHeader,
     VdfMap,
-    SportFilter
+    VdfSportFilter
   },
   data: () => ({
     drawer: null
