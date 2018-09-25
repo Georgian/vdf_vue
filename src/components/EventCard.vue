@@ -5,6 +5,7 @@
         :src="vdfEvent.photoLink"
         height="200px"
         max-height="200px"
+        :style="vdfEvent.isPastEvent() ? 'filter: grayscale(100%);' : ''"
       ></v-img>
 
       <v-flex ><h3>{{vdfEvent.name}}</h3></v-flex>

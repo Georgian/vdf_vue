@@ -5,10 +5,6 @@ import vdfapi from './vdfapi'
 Vue.use(Vuex)
 
 let today = new Date()
-let isPastEvent = function (event) {
-  let refDate = event.dateEnd ? event.dateEnd : event.dateStart
-  return new Date(refDate) < today
-}
 
 export default new Vuex.Store({
   state: {
@@ -20,7 +16,7 @@ export default new Vuex.Store({
     eventsByFacets: state => facets => {
       return state.events.filter(event => {
         let showPastEvents = (facets.showPastEvents && facets.showPastEvents[0] === 'true')
-        if (!showPastEvents && isPastEvent(event)) { return false }
+        if (!showPastEvents && event.isPastEvent()) { return false }
 
         let sport = facets.sport
         if (sport && !sport.includes(event.sport)) { return false }
@@ -33,6 +29,7 @@ export default new Vuex.Store({
 
         return true
       })
+        .sort(function (a, b) { return new Date(a.dateStart) - new Date(b.dateStart) })
     }
   },
   actions: {
@@ -42,6 +39,13 @@ export default new Vuex.Store({
         .get('/event')
         .then(r => r.data)
         .then(events => {
+          events.forEach(e => {
+            e.isPastEvent = function () {
+              let refDate = e.dateEnd ? e.dateEnd : e.dateStart
+              return new Date(refDate) < today
+            }
+          })
+
           commit('SET_EVENTS', events)
           commit('SET_LOADING', false)
         })

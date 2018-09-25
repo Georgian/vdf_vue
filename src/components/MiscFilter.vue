@@ -3,7 +3,7 @@
     <v-flex py-0 my-0>
       <v-layout row>
         <v-flex my-0 py-0>
-          <v-checkbox v-model="showPastEvents" label="Arată evenimente încheiate"></v-checkbox>
+          <v-checkbox v-model="showPastEvents" label="Evenimente trecute"></v-checkbox>
         </v-flex>
       </v-layout>
     </v-flex>
