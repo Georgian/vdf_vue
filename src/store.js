@@ -4,19 +4,10 @@ import vdfapi from './vdfapi'
 
 Vue.use(Vuex)
 
-let today = new Date()
-
-const matchesQuery = function (event, query) {
-  const queryLowerCase = query.toLowerCase()
-  const stringEquals = function (a) {
-    return a && a.toLowerCase().includes(queryLowerCase)
-  }
-  return stringEquals(event.name) ||
-    stringEquals(event.description) ||
-    stringEquals(event.discipline) ||
-    stringEquals(event.organizer) ||
-    stringEquals(event.locationName)
-}
+const today = new Date()
+const searchableFields = ['name', 'description', 'discipline', 'organizer', 'locationName']
+const strMatches = function (a, b) { return a && a.toLowerCase().includes(b) }
+const matchesQuery = function (event, query) { return searchableFields.some(field => strMatches(event[field], query.toLowerCase())) }
 
 export default new Vuex.Store({
   state: {
