@@ -6,6 +6,18 @@ Vue.use(Vuex)
 
 let today = new Date()
 
+const matchesQuery = function (event, query) {
+  const queryLowerCase = query.toLowerCase()
+  const stringEquals = function (a) {
+    return a && a.toLowerCase().includes(queryLowerCase)
+  }
+  return stringEquals(event.name) ||
+    stringEquals(event.description) ||
+    stringEquals(event.discipline) ||
+    stringEquals(event.organizer) ||
+    stringEquals(event.locationName)
+}
+
 export default new Vuex.Store({
   state: {
     isLoading: false,
@@ -26,6 +38,9 @@ export default new Vuex.Store({
 
         let organizer = facets.organizer
         if (organizer && !organizer.includes(event.organizer)) { return false }
+
+        let query = facets.query
+        if (query && !matchesQuery(event, query)) { return false }
 
         return true
       })

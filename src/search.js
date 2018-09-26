@@ -63,6 +63,11 @@ const client = {
     }
 
     /**
+     * Attach manually written query, in the navbar search field
+     */
+    requestParams.query = requests[0].params.query
+
+    /**
      *
      * important bit
      *
