@@ -86,20 +86,33 @@ const client = {
      */
     var facets = {}
     facets.sport = {}
+    facets.miscellaneous = {}
     facets.discipline = {}
     facets.organizer = {}
 
     events.forEach(function (e) {
-      if (e.sport != null) {
-        var currentSportCount = facets.sport[e.sport]
-        facets.sport[e.sport] = currentSportCount == null ? 1 : parseInt(currentSportCount) + 1
-      }
-      if (e.discipline != null) {
-        var currentDisciplineCount = facets.discipline[e.discipline]
-        facets.discipline[e.discipline] = currentDisciplineCount == null ? 1 : parseInt(currentDisciplineCount) + 1
-      }
+      e.tags.forEach(tag => {
+        let tagCategory = tag.category
+        let tagName = tag.name
+
+        if (tagCategory === 'Miscellaneous') {
+          // 1. MISC
+          let currentMiscellaneousCount = facets.miscellaneous[tagName]
+          facets.miscellaneous[tagName] = currentMiscellaneousCount == null ? 1 : parseInt(currentMiscellaneousCount) + 1
+        } else {
+          // 2. SPORT
+          let currentSportCount = facets.sport[tagCategory]
+          facets.sport[tagCategory] = currentSportCount == null ? 1 : parseInt(currentSportCount) + 1
+
+          // 3. DISCIPLINE
+          let currentDisciplineCount = facets.discipline[tagName]
+          facets.discipline[tagName] = currentDisciplineCount == null ? 1 : parseInt(currentDisciplineCount) + 1
+        }
+      })
+
+      // 4. ORGANIZER
       if (e.organizer != null) {
-        var currentOrganizerCount = facets.organizer[e.organizer]
+        let currentOrganizerCount = facets.organizer[e.organizer]
         facets.organizer[e.organizer] = currentOrganizerCount == null ? 1 : parseInt(currentOrganizerCount) + 1
       }
     })
@@ -113,7 +126,7 @@ const client = {
 }
 
 const helper = new AlgoliaSearchHelper(client, 'vdf', {
-  facets: ['discipline', 'organizer', 'sport']
+  facets: ['discipline', 'miscellaneous', 'organizer', 'sport']
 })
 
 const algoliaStore = new Store(helper)

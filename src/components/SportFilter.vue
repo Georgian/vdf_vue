@@ -42,7 +42,7 @@
         </v-layout>
         <v-layout row>
           <v-flex my-0 py-0>
-            <v-radio label="Sosea"      value="radio-3" v-on:change="showOnly('Sosea')"></v-radio>
+            <v-radio label="Șosea"      value="radio-3" v-on:change="showOnly('Șosea')"></v-radio>
           </v-flex>
         </v-layout>
         <v-layout row>

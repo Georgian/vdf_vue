@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import vdfapi from '../vdfapi'
 import VdfDirMap from './DirectionsMap'
 import VueWeatherWidget from 'vue-weather-widget'
 import 'vue-weather-widget/dist/css/vue-weather-widget.css'
@@ -75,7 +75,7 @@ export default {
       this.error = this.vdfEvent = null
       this.loadingData = true
       let self = this
-      axios.get(process.env.API_BASE_URL + '/event/' + this.vdfEventId)
+      vdfapi.get('/event/' + this.vdfEventId)
         .then(response => {
           self.loadingData = false
           self.vdfEvent = response.data

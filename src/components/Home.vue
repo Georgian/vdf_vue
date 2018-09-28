@@ -32,6 +32,24 @@
               </ais-refinement-list>
             </v-flex>
 
+            <v-flex pb-5>
+              <h3>Etichetă</h3>
+              <ais-refinement-list attribute-name='miscellaneous' :sort-by="['count:desc', 'name:asc']" inline-template>
+                <v-layout column>
+                  <v-flex v-for="facet in facetValues" :key="facet.name" my-0 py-0>
+                    <v-layout row align-center justify-center fill-height>
+                      <v-flex my-0 py-0>
+                        <v-checkbox :label=facet.name v-model="facet.isRefined" @change="toggleRefinement(facet)" hide-details></v-checkbox>
+                      </v-flex>
+                      <div class="badge mt-2">
+                        {{ facet.count }}
+                      </div>
+                    </v-layout>
+                  </v-flex>
+                </v-layout>
+              </ais-refinement-list>
+            </v-flex>
+
             <v-flex>
               <h3>Organizator</h3>
               <ais-refinement-list attribute-name='organizer' :sort-by="['count:desc', 'name:asc']" inline-template>

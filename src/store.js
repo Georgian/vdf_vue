@@ -21,11 +21,14 @@ export default new Vuex.Store({
         let showPastEvents = (facets.showPastEvents && facets.showPastEvents[0] === 'true')
         if (!showPastEvents && event.isPastEvent()) { return false }
 
-        let sport = facets.sport
-        if (sport && !sport.includes(event.sport)) { return false }
+        let sports = facets.sport
+        if (sports && !sports.some(s => event.tags.map(t => t.category).indexOf(s) >= 0)) { return false }
 
-        let discipline = facets.discipline
-        if (discipline && !discipline.includes(event.discipline)) { return false }
+        let miscs = facets.miscellaneous
+        if (miscs && !miscs.some(s => event.tags.map(t => t.name).indexOf(s) >= 0)) { return false }
+
+        let disciplines = facets.discipline
+        if (disciplines && !disciplines.some(s => event.tags.map(t => t.name).indexOf(s) >= 0)) { return false }
 
         let organizer = facets.organizer
         if (organizer && !organizer.includes(event.organizer)) { return false }
