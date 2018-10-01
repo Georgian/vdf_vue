@@ -45,11 +45,11 @@
         </v-menu>
       </v-flex>
       <v-text-field
-        v-model="timeSchedule"
+        v-model="schedule"
         label="Program"
       ></v-text-field>
       <v-text-field
-        v-model="price"
+        v-model="registrationTax"
         label="Taxa"
       ></v-text-field>
       <v-text-field
@@ -73,7 +73,7 @@
         label="Link fotograie de promovare"
       ></v-text-field>
       <v-text-field
-        v-model="trackLink"
+        v-model="tracks"
         label="Link traseu"
       ></v-text-field>
       <v-btn
@@ -101,14 +101,16 @@ export default {
     organizer: '',
     dateStart: '',
     dateEnd: '',
-    timeSchedule: '',
-    price: '',
+    schedule: '',
+    registrationTax: '',
+    prizes: '',
     locationName: '',
     locationCoordinates: '',
     registrationLink: '',
     technicalGuideLink: '',
     photoLink: '',
-    trackLink: ''
+    tracks: '',
+    ageCategories: ''
   }),
   methods: {
     submit () {
@@ -121,14 +123,16 @@ export default {
           discipline: this.discipline,
           organizer: this.organizer,
           date: this.date,
-          timeSchedule: this.timeSchedule,
-          price: this.price,
+          schedule: this.schedule,
+          registrationTax: this.registrationTax,
+          prizes: this.prizes,
+          ageCategories: this.ageCategories,
           locationName: this.locationName,
           locationCoordinates: this.locationCoordinates,
           registrationLink: this.registrationLink,
           technicalGuideLink: this.technicalGuideLink,
           photoLink: this.photoLink,
-          trackLink: this.trackLink
+          tracks: this.tracks
         })
       }
     },

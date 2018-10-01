@@ -26,20 +26,81 @@
           </v-flex>
         </v-layout>
 
-        <v-flex py-10>
-          <p><span v-html="vdfEvent.description"></span></p>
-        </v-flex>
+        <v-expansion-panel>
 
-        <vdf-dir-map :vdf-event="vdfEvent"></vdf-dir-map>
+          <v-expansion-panel-content value="true">
+            <div slot="header">Descriere</div>
+            <v-card>
+              <v-card-text>
+                <span v-html="handleEmptyField(vdfEvent.description)"></span>
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
 
-        <!--<weather
-          api-key="e1ace13f0da11bcdf6a4c8402808822b"
-          title="Vremea"
-          :latitude="vdfEvent.locationCoordinates.split(',')[0]"
-          longitude="vdfEvent.locationCoordinates.split(',')[1]"
-          language="en"
-          units="uk">
-        </weather>-->
+          <v-expansion-panel-content>
+            <div slot="header">Traseu</div>
+            <v-card>
+              <v-card-text>
+                <span v-html="handleEmptyField(vdfEvent.tracks)"></span>
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
+
+          <v-expansion-panel-content>
+            <div slot="header">Categorii</div>
+            <v-card>
+              <v-card-text>
+                <span v-html="handleEmptyField(vdfEvent.ageCategories)"></span>
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
+
+          <v-expansion-panel-content>
+            <div slot="header">Program</div>
+            <v-card>
+              <v-card-text>
+                <span v-html="handleEmptyField(vdfEvent.schedule)"></span>
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
+
+          <v-expansion-panel-content>
+            <div slot="header">Taxă</div>
+            <v-card>
+              <v-card-text>
+                <span v-html="handleEmptyField(vdfEvent.registrationTax)"></span>
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
+
+          <v-expansion-panel-content>
+            <div slot="header">Premii</div>
+            <v-card>
+              <v-card-text>
+                <span v-html="handleEmptyField(vdfEvent.prizes)"></span>
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
+
+          <v-expansion-panel-content>
+            <div slot="header">Locație</div>
+            <vdf-dir-map :vdf-event="vdfEvent"></vdf-dir-map>
+          </v-expansion-panel-content>
+
+          <v-expansion-panel-content>
+            <div slot="header">Meteo</div>
+            <!-- TODO -->
+            <!--<weather
+              api-key="e1ace13f0da11bcdf6a4c8402808822b"
+              title="Vremea"
+              :latitude="vdfEvent.locationCoordinates.split(',')[0]"
+              longitude="vdfEvent.locationCoordinates.split(',')[1]"
+              language="en"
+              units="uk">
+            </weather>-->
+          </v-expansion-panel-content>
+
+        </v-expansion-panel>
 
       </v-layout>
     </v-container>
@@ -87,6 +148,9 @@ export default {
     },
     computeEventDates: function (vdfEvent) {
       this.vdfEventDates = this.formatDate(vdfEvent.dateStart, vdfEvent.dateEnd)
+    },
+    handleEmptyField: function (field) {
+      return field && field !== '' ? field : '<b>Nici o informație</b>'
     }
   }
 }
