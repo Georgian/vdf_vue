@@ -13,7 +13,7 @@
       <v-flex px-0 pb-0 pt-0 align-center justify-center>
         <v-flex py-0 text-wrap>
           <font-awesome-icon icon="bicycle"></font-awesome-icon>
-          {{vdfEvent.sport}} {{vdfEvent.discipline}}
+            {{vdfEvent.tags.filter(t => t.category != 'Miscellaneous').map(t => t.name).join(', ')}}
         </v-flex>
         <v-flex py-0>
           <font-awesome-icon icon="calendar-alt"></font-awesome-icon>
