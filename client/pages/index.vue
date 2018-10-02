@@ -9,46 +9,45 @@
       <nuxt />
       <vdf-footer />
 
-      <cookie-law
-        theme="blood-orange"
-        buttonText="Am înțeles!"
-        buttonLinkText="">
-        <div slot="message">
-          Acest website folosește cookie-uri pentru a furniza vizitatorilor o experiență mult mai bună de
-          navigare și servicii adaptate nevoilor și interesului fiecăruia. Citește
-          <router-link to="/termeni" class="white--text">Termeni și Condiții</router-link>
-        </div>
-      </cookie-law>
+      <no-ssr>
+        <cookie-law
+          theme="blood-orange"
+          buttonText="Am înțeles!"
+          buttonLinkText="">
+          <div slot="message">
+            Acest website folosește cookie-uri pentru a furniza vizitatorilor o experiență mult mai bună de
+            navigare și servicii adaptate nevoilor și interesului fiecăruia. Citește
+            <router-link to="/termeni" class="white--text">Termeni și Condiții</router-link>
+          </div>
+        </cookie-law>
+      </no-ssr>
 
     </v-app>
   </ais-index>
 </template>
 <script>
-  import VdfHeader from '../layout/Header'
-  import VdfFooter from '../layout/Footer'
-  import CookieLaw from 'vue-cookie-law'
-  import algoliaStore from '../search'
+import VdfHeader from '../layout/Header'
+import VdfFooter from '../layout/Footer'
+import CookieLaw from 'vue-cookie-law'
+import algoliaStore from '../plugins/search'
 
-  export default {
-    components: {VdfFooter, VdfHeader, CookieLaw},
-    data: () => ({
-      searchStore: algoliaStore
-    }),
-    created () {
-      this.$Progress.start()
-    },
-    mounted () {
-      this.$store.dispatch('loadEvents')
-    },
-    computed: {
-      eventCount () {
-        return this.$store.getters.events
-      }
-    },
-    watch: {
-      eventCount (newCount, oldCount) {
-        algoliaStore.refresh()
-      }
+export default {
+  components: {VdfFooter, VdfHeader, CookieLaw},
+  data: () => ({
+    searchStore: algoliaStore
+  }),
+  mounted () {
+    this.$store.dispatch('loadEvents')
+  },
+  computed: {
+    eventCount () {
+      return this.$store.getters.events
+    }
+  },
+  watch: {
+    eventCount (newCount, oldCount) {
+      algoliaStore.refresh()
     }
   }
+}
 </script>

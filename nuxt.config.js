@@ -1,6 +1,9 @@
 // nuxt.config.js
 module.exports = {
   mode: 'universal',
+  plugins: [
+    '~/plugins/main.js'
+  ],
   head: {
     title: 'Vue Nuxt Test',
     meta: [

@@ -5,7 +5,7 @@
     map-type-id="terrain"
     style="width: 100%; height: 600px"
   >
-    <GmapInfoWindow :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen">
+   <GmapInfoWindow :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen">
       {{infoContent}}
     </GmapInfoWindow>
 

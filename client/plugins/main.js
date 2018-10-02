@@ -3,27 +3,9 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import * as VueGoogleMaps from 'vue2-google-maps'
-import App from './App'
-import VueRouter from 'vue-router'
 import InstantSearch from 'vue-instantsearch'
 import AlgoliaSearchHelper from 'algoliasearch-helper'
-import Home from '@/components/Home'
-import Terms from '@/components/Terms'
-import EventPage from '@/components/EventPage'
-import PageNotFound from '@/components/PageNotFound'
-import EventCard from '@/components/EventCard'
-import Map from '@/components/Map'
-import Input from '@/components/Input'
-import VueWeatherWidget from 'vue-weather-widget'
 import VueAnalytics from 'vue-analytics'
-import '@/plugins/fb-sdk.js'
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
-import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure you are using css-loader
-import './stylus/main.styl'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBicycle, faCalendarAlt, faLocationArrow, faHeart } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import store from './store'
 import VueProgressBar from 'vue-progressbar'
 
 Vue.use(Vuetify, {
@@ -41,7 +23,6 @@ Vue.use(VueGoogleMaps, {
   }
 })
 
-Vue.use(VueRouter)
 Vue.use(InstantSearch)
 Vue.use(AlgoliaSearchHelper)
 Vue.use(VueProgressBar, {
@@ -49,17 +30,6 @@ Vue.use(VueProgressBar, {
   failedColor: 'red',
   height: '3px'
 })
-
-Vue.component('event-card', EventCard)
-Vue.component('vdf-map', Map)
-Vue.component('vdf-input', Input)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.component('weather', VueWeatherWidget)
-
-library.add(faBicycle)
-library.add(faCalendarAlt)
-library.add(faLocationArrow)
-library.add(faHeart)
 
 let filter = function (text, length, clamp) {
   clamp = clamp || '...'
@@ -125,53 +95,7 @@ Vue.mixin({
 
 // ----------------------------
 
-const router = new VueRouter({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '*',
-      name: 'PageNotFound',
-      component: PageNotFound
-    },
-    {
-      path: '/termeni',
-      name: 'Terms',
-      component: Terms
-    },
-    {
-      path: '/event/:vdfEventId',
-      name: 'EventPage',
-      component: EventPage,
-      props: true
-    }
-    // {
-    //   path: '/event',
-    //   name: 'AddEvent',
-    //   component: AddEvent
-    // },
-    // {
-    //   path: '/account/login',
-    //   name: 'Login',
-    //   component: Login
-    // }
-  ]
-})
-
 Vue.use(VueAnalytics, {
   id: 'UA-126133683-1',
   router
-})
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  store: store,
-  template: '<App/>'
 })

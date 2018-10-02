@@ -1,6 +1,6 @@
 import { Store } from 'vue-instantsearch'
 import { AlgoliaSearchHelper } from 'algoliasearch-helper'
-import store from './store'
+import store from '../store/index.js'
 
 var aisResultObject = {
   // 'hits': [

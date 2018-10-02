@@ -18,8 +18,12 @@
     "serverless-apigw-binary": "^0.4.4",
     "serverless-http": "^1.6.0",
     "vue": "^2.5.17",
+    "vue-analytics": "^5.16.0",
     "vue-cookie-law": "^1.6.0",
     "vue-instantsearch": "^1.7.0",
+    "vue-progressbar": "^0.7.5",
+    "vue2-google-maps": "^0.10.2",
+    "vuetify": "^1.2.6",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

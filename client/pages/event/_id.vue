@@ -107,7 +107,7 @@
 </template>
 
 <script>
-  import vdfapi from '../../vdfapi'
+  import vdfapi from '../../plugins/vdfapi'
   import VdfDirMap from '../../components/DirectionsMap'
 
   export default {
