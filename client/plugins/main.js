@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import * as VueGoogleMaps from 'vue2-google-maps'
+import VueGoogleMaps from 'vue2-google-maps'
 import InstantSearch from 'vue-instantsearch'
 import AlgoliaSearchHelper from 'algoliasearch-helper'
 import VueAnalytics from 'vue-analytics'
@@ -16,12 +16,12 @@ Vue.use(Vuetify, {
     // bckgrnd: '#FAFAFA'
   }
 })
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA',
-    libraries: 'map'
-  }
-})
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: 'AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA',
+//     libraries: 'map'
+//   }
+// })
 
 Vue.use(InstantSearch)
 Vue.use(AlgoliaSearchHelper)
@@ -96,6 +96,5 @@ Vue.mixin({
 // ----------------------------
 
 Vue.use(VueAnalytics, {
-  id: 'UA-126133683-1',
-  router
+  id: 'UA-126133683-1'
 })

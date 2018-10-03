@@ -2,7 +2,7 @@
 module.exports = {
   mode: 'universal',
   plugins: [
-    '~/plugins/main.js'
+    { src: '~/plugins/main.js', ssr: false }
   ],
   head: {
     title: 'Vue Nuxt Test',
