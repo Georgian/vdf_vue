@@ -5,7 +5,7 @@
         Un proiect pilot dezvoltat în timpul liber, din pasiune pentru ciclism și programare <font-awesome-icon icon="heart"></font-awesome-icon>
       </v-flex>-->
       <v-flex mb-1>
-        <a href="https://goo.gl/forms/IUP6RC6D4lfGVyx92" style="text-decoration: none;" class="blue--text" target="_blank">
+        <a href="https://goo.gl/forms/IUP6RC6D4lfGVyx92" style="text-decoration: none;" class="blue--text" target="_blank" rel="noopener">
           Informații greșite? Contribuie aici <font-awesome-icon icon="heart"></font-awesome-icon>
         </a>
       </v-flex>

@@ -16,11 +16,14 @@ export default {
   // ],
 
   head: {
-    title: 'Varf de Forma',
+    htmlAttrs: {
+      lang: 'ro',
+    },
+    title: 'Vârf de Formă | Toate concursurile importante la un loc',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Concursuri ciclism mountain-bike sosea velodrom ciclocross' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

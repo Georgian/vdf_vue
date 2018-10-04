@@ -1,7 +1,7 @@
 <template>
   <v-tabs color="primary">
 
-    <v-tab ripple>Listă</v-tab>
+    <v-tab ripple id="tab1">Listă</v-tab>
     <v-tab-item>
       <v-container grid-list-md>
         <v-layout row wrap xs12>
@@ -12,7 +12,7 @@
       </v-container>
     </v-tab-item>
 
-    <v-tab>Hartă</v-tab>
+    <v-tab id="tab2">Hartă</v-tab>
     <v-tab-item>
 <!--
       <vdf-map :vdfEvents="results"></vdf-map>

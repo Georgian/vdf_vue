@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import * as VueGoogleMaps from 'vue2-google-maps'
+//import * as VueGoogleMaps from 'vue2-google-maps'
 export default {
   name: 'vdf-map',
   components: [
-    VueGoogleMaps
+    // VueGoogleMaps
   ],
   data () {
     return {
