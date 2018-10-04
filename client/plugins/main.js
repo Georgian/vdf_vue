@@ -1,21 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuetify from 'vuetify'
-import VueGoogleMaps from 'vue2-google-maps'
-import InstantSearch from 'vue-instantsearch'
-import AlgoliaSearchHelper from 'algoliasearch-helper'
 import VueAnalytics from 'vue-analytics'
 import VueProgressBar from 'vue-progressbar'
 
-Vue.use(Vuetify, {
-  theme: {
-    primary: '#F5F5F5'
-    // secondary: '#84CEEB',
-    // accent: '#8860D0',
-    // bckgrnd: '#FAFAFA'
-  }
-})
 // Vue.use(VueGoogleMaps, {
 //   load: {
 //     key: 'AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA',
@@ -23,8 +11,6 @@ Vue.use(Vuetify, {
 //   }
 // })
 
-Vue.use(InstantSearch)
-Vue.use(AlgoliaSearchHelper)
 Vue.use(VueProgressBar, {
   color: '#8860D0',
   failedColor: 'red',

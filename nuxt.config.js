@@ -2,10 +2,21 @@
 module.exports = {
   mode: 'universal',
   plugins: [
-    { src: '~/plugins/main.js', ssr: false }
+    '~/plugins/main.js',
+    '~/plugins/vuetify.js',
+    '~/plugins/search.js'
   ],
+
+  /*
+   * Global CSS
+   * TODO this is problematic
+   */
+  // css: [
+  //   '~/assets/styles/app.styl'
+  // ],
+
   head: {
-    title: 'Vue Nuxt Test',
+    title: 'Varf de Forma',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -13,7 +24,10 @@ module.exports = {
     ]
   },
   build: {
-    vendor: ['axios'],
+    vendor: [
+      'axios',
+      '~/plugins/vuetify.js'
+    ],
     publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/` // <= add the path to the cached files
   },
   srcDir: 'client/',
@@ -23,5 +37,6 @@ module.exports = {
   router: {
     base: `/`
   },
+  extractCSS: true,
   dev: false
 }

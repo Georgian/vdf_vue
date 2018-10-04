@@ -27,6 +27,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "postcss-loader": "^2.1.1",
     "serverless-domain-manager": "^2.6.5",
     "webpack": "^4.20.2"
   }

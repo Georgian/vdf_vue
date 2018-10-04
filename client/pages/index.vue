@@ -1,53 +1,47 @@
 <template>
-  <!-- TODO need to hide this ais-index if not on search page !! -->
-  <ais-index
-    index-name='vdf'
-    :search-store='searchStore'>
-    <v-app id='vdf'>
-
-      <vdf-header />
-      <nuxt />
-      <vdf-footer />
-
-      <no-ssr>
-        <cookie-law
-          theme="blood-orange"
-          buttonText="Am înțeles!"
-          buttonLinkText="">
-          <div slot="message">
-            Acest website folosește cookie-uri pentru a furniza vizitatorilor o experiență mult mai bună de
-            navigare și servicii adaptate nevoilor și interesului fiecăruia. Citește
-            <router-link to="/termeni" class="white--text">Termeni și Condiții</router-link>
-          </div>
-        </cookie-law>
-      </no-ssr>
-
-    </v-app>
-  </ais-index>
+  <div class="container">
+    test
+  </div>
 </template>
-<script>
-import VdfHeader from '../layout/Header'
-import VdfFooter from '../layout/Footer'
-import CookieLaw from 'vue-cookie-law'
-import algoliaStore from '../plugins/search'
 
-export default {
-  components: {VdfFooter, VdfHeader, CookieLaw},
-  data: () => ({
-    searchStore: algoliaStore
-  }),
-  mounted () {
-    this.$store.dispatch('loadEvents')
-  },
-  computed: {
-    eventCount () {
-      return this.$store.getters.events
-    }
-  },
-  watch: {
-    eventCount (newCount, oldCount) {
-      algoliaStore.refresh()
+<script>
+  import VdfSportFilter from '../components/SportFilter'
+  import VdfMap from '../components/Map'
+  import VdfMiscFilter from '../components/MiscFilter'
+
+  export default {
+    components: {
+      VdfMiscFilter,
+      VdfMap,
+      VdfSportFilter
+    },
+    data: () => ({
+      drawer: null
+    }),
+    methods: {
+      getMarkerLocation: function (locationCoordinates) {
+        let split = locationCoordinates.split(',')
+        return {lat: parseFloat(split[0]), lng: parseFloat(split[1])}
+      }
     }
   }
-}
 </script>
+
+<style>
+  .v-label {
+    font-size: 14px;
+  }
+  .badge {
+    float: right;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #777;
+    border-radius: 8px;
+  }
+</style>
