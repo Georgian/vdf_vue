@@ -41,7 +41,7 @@ export default {
     // this.$Progress.start()
   },
   mounted () {
-    // this.$store.dispatch('loadEvents')
+    this.$store.dispatch('loadEvents')
   },
   computed: {
     eventCount () {
@@ -50,7 +50,7 @@ export default {
   },
   watch: {
     eventCount (newCount, oldCount) {
-      // algoliaStore.refresh()
+      this.searchStore.refresh()
     }
   }
 }

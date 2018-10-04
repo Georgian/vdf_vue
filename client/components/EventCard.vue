@@ -42,6 +42,7 @@
 
 <script>
 export default {
+  name: 'vdf-event-card',
   props: {
     vdfEvent: { type: Object, required: true }
   },
