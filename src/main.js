@@ -28,9 +28,9 @@ import VueProgressBar from 'vue-progressbar'
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#F5F5F5'
+    primary: '#F5F5F5',
     // secondary: '#84CEEB',
-    // accent: '#8860D0',
+    accent: '#8860D0'
     // bckgrnd: '#FAFAFA'
   }
 })
