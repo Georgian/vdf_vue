@@ -6,7 +6,7 @@
       <sup class="mr-5" style="background-color: indianred; font-weight: bold">BETA</sup>
     </router-link>
     <v-flex mt-2>
-      <vdf-input v-if="$route.name === 'Home'"></vdf-input>
+      <vdf-input v-if="$route.name === 'index'"></vdf-input>
     </v-flex>
     <v-spacer></v-spacer>
     <!--<v-toolbar-items>-->
@@ -16,8 +16,12 @@
 </template>
 
 <script>
+import Input from './Input'
 export default {
-  name: 'vdf-header'
+  name: 'vdf-header',
+  components: {
+    'vdf-input': Input
+  }
 }
 </script>
 

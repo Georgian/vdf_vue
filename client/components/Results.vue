@@ -15,7 +15,7 @@
     <v-tab>Hartă</v-tab>
     <v-tab-item>
 <!--
-      <vdf-map :vdfEvents="resultz"></vdf-map>
+      <vdf-map :vdfEvents="results"></vdf-map>
 -->
     </v-tab-item>
 
@@ -25,11 +25,13 @@
 <script>
 import { Component } from 'vue-instantsearch'
 import EventCard from './EventCard'
+import Map from './Map'
 export default {
   name: 'vdf-results',
   mixins: [Component],
   components: {
-    'vdf-event-card': EventCard
+    'vdf-event-card': EventCard,
+    'vdf-map': Map
   },
   props: {
     stack: {

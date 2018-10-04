@@ -1,5 +1,5 @@
 // nuxt.config.js
-module.exports = {
+export default {
   mode: 'universal',
   plugins: [
     '~/plugins/main.js',
@@ -32,8 +32,18 @@ module.exports = {
       'axios',
       '~/plugins/vuetify.js'
     ],
-    publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/` // <= add the path to the cached files
+    publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/`, // <= add the path to the cached files
   },
+  modules: [
+    ['nuxt-fontawesome', {
+      imports: [
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['faBicycle', 'faCalendarAlt', 'faLocationArrow', 'faHeart']
+        }
+      ]
+    }]
+  ],
   srcDir: 'client/',
   performance: {
     gzip: false

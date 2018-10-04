@@ -26,8 +26,8 @@
   </ais-index>
 </template>
 <script>
-import VdfHeader from './Header'
-import VdfFooter from './Footer'
+import VdfHeader from '~/components/Header'
+import VdfFooter from '~/components/Footer'
 import CookieLaw from 'vue-cookie-law'
 import createSearchStoreFromVuex from '../plugins/search'
 

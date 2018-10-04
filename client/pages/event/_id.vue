@@ -84,7 +84,9 @@
 
         <v-expansion-panel-content>
           <div slot="header">Locație</div>
+<!--
           <vdf-dir-map :vdf-event="vdfEvent"></vdf-dir-map>
+-->
         </v-expansion-panel-content>
 
         <v-expansion-panel-content>
@@ -107,51 +109,50 @@
 </template>
 
 <script>
-  import vdfapi from '../../plugins/vdfapi'
-  import VdfDirMap from '../../components/DirectionsMap'
+import vdfapi from '../../plugins/vdfapi'
+import VdfDirMap from '../../components/DirectionsMap'
 
-  export default {
-    name: 'EventPage',
-    components: {VdfDirMap},
-    props: ['vdfEventId'],
-    data: function () {
-      return {
-        loadingData: false,
-        error: null,
-        vdfEvent: null,
-        vdfEventDates: null
-      }
+export default {
+  name: 'EventPage',
+  components: {VdfDirMap},
+  data: function () {
+    return {
+      loadingData: false,
+      error: null,
+      vdfEvent: null,
+      vdfEventDates: null
+    }
+  },
+  created () {
+    this.fetchVdfEvent()
+  },
+  watch: {
+    // Call again the method if the route changes
+    '$route': 'fetchVdfEvent'
+  },
+  methods: {
+    fetchVdfEvent: function () {
+      this.error = this.vdfEvent = null
+      this.loadingData = true
+      let self = this
+      vdfapi.get('/event/' + this.$route.params.id)
+        .then(response => {
+          self.loadingData = false
+          self.vdfEvent = response.data
+          this.computeEventDates(self.vdfEvent)
+        })
+        .catch(error => {
+          self.error = error.response
+        })
     },
-    created () {
-      this.fetchVdfEvent()
+    computeEventDates: function (vdfEvent) {
+      this.vdfEventDates = this.formatDate(vdfEvent.dateStart, vdfEvent.dateEnd)
     },
-    watch: {
-      // Call again the method if the route changes
-      '$route': 'fetchVdfEvent'
-    },
-    methods: {
-      fetchVdfEvent: function () {
-        this.error = this.vdfEvent = null
-        this.loadingData = true
-        let self = this
-        vdfapi.get('/event/' + this.vdfEventId)
-          .then(response => {
-            self.loadingData = false
-            self.vdfEvent = response.data
-            this.computeEventDates(self.vdfEvent)
-          })
-          .catch(error => {
-            self.error = error.response
-          })
-      },
-      computeEventDates: function (vdfEvent) {
-        this.vdfEventDates = this.formatDate(vdfEvent.dateStart, vdfEvent.dateEnd)
-      },
-      handleEmptyField: function (field) {
-        return field && field !== '' ? field : '<b>Nici o informație</b>'
-      }
+    handleEmptyField: function (field) {
+      return field && field !== '' ? field : '<b>Nici o informație</b>'
     }
   }
+}
 </script>
 
 <style scoped>

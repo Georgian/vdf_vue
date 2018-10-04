@@ -13,11 +13,6 @@ import { Component } from 'vue-instantsearch'
 
 export default {
   mixins: [Component],
-  data () {
-    return {
-      blockClassName: 'ais-input'
-    }
-  },
   computed: {
     query: {
       get () {

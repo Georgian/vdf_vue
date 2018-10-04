@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
     "algoliasearch-helper": "^2.26.1",
     "axios": "^0.18.0",
     "express": "^4.16.3",
     "nuxt": "^2.1.0",
+    "nuxt-fontawesome": "^0.3.0",
     "serverless-apigw-binary": "^0.4.4",
     "serverless-http": "^1.6.0",
     "vue": "^2.5.17",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-plugin-transform-imports": "^1.5.1",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^5.6.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-loader": "^2.1.1",
