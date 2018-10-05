@@ -26,19 +26,18 @@ export default {
       { hid: 'description', name: 'description', content: 'Concursuri ciclism mountain-bike sosea velodrom ciclocross' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-  icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
   build: {
     vendor: [
-      'axios',
-      '~/plugins/vuetify.js'
+      'axios'
     ],
     publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/`, // <= add the path to the cached files
   },
   modules: [
-    ['nuxt-fontawesome', {
+     ['nuxt-fontawesome', {
       imports: [
         {
           set: '@fortawesome/free-solid-svg-icons',

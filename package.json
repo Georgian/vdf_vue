@@ -15,6 +15,8 @@
     "algoliasearch-helper": "^2.26.1",
     "axios": "^0.18.0",
     "express": "^4.16.3",
+    "google-maps": "^3.3.0",
+    "google-maps-api-loader": "^1.1.1",
     "nuxt": "^2.1.0",
     "nuxt-fontawesome": "^0.3.0",
     "serverless-apigw-binary": "^0.4.4",
@@ -24,12 +26,12 @@
     "vue-cookie-law": "^1.6.0",
     "vue-instantsearch": "^1.7.0",
     "vue-progressbar": "^0.7.5",
-    "vue2-google-maps": "^0.10.2",
     "vuetify": "^1.2.6",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
     "babel-plugin-transform-imports": "^1.5.1",
     "babel-preset-stage-2": "^6.24.1",
     "eslint": "^5.6.1",

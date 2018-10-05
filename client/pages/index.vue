@@ -80,7 +80,6 @@
 
 <script>
 import VdfSportFilter from '~/components/SportFilter'
-import VdfMap from '~/components/Map'
 import VdfMiscFilter from '~/components/MiscFilter'
 import VdfResults from '~/components/Results'
 
@@ -88,7 +87,6 @@ export default {
   components: {
     VdfResults,
     VdfMiscFilter,
-    VdfMap,
     VdfSportFilter
   },
   data: () => ({
