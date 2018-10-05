@@ -4,6 +4,7 @@
     asd
     <map-loader
       apiKey="AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA"
+      :map-config="mapConfig"
     >
       <template v-for="marker in vdfEvents">
         <child-marker :position="coordinateStringToObject(marker.locationCoordinates)" />
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import MapLoader from "./MapLoader.vue"
+import MapLoader from './MapLoader.vue'
 import ChildMarker from './ChildMarker'
 
 export default {
@@ -25,7 +26,7 @@ export default {
     return {
       mapConfig: {
         zoom: 12,
-        center: {lat: 45.919849, lng: 25.0203875}
+        center: { lat: 45.919849, lng: 25.0203875 }
       }
     }
   },
@@ -36,7 +37,7 @@ export default {
   methods: {
     coordinateStringToObject: function (coordinateString) {
       let split = coordinateString.split(',')
-      return {lat: parseFloat(split[0]), lng: parseFloat(split[1])}
+      return { lat: parseFloat(split[0]), lng: parseFloat(split[1]) }
     }
   }
 }
