@@ -16,56 +16,17 @@
 
             <v-flex pb-5>
               <h3>Disciplina</h3>
-              <ais-refinement-list attribute-name='discipline' :sort-by="['count:desc', 'name:asc']" inline-template>
-                <v-layout column>
-                  <v-flex v-for="facet in facetValues" :key="facet.name" my-0 py-0>
-                    <v-layout row align-center justify-center fill-height>
-                      <v-flex my-0 py-0>
-                        <v-checkbox :label=facet.name v-model="facet.isRefined" @change="toggleRefinement(facet)" hide-details></v-checkbox>
-                      </v-flex>
-                      <div class="badge mt-2">
-                        {{ facet.count }}
-                      </div>
-                    </v-layout>
-                  </v-flex>
-                </v-layout>
-              </ais-refinement-list>
+              <vdf-filter facetName='discipline'></vdf-filter>
             </v-flex>
 
             <v-flex pb-5>
               <h3>Etichetă</h3>
-              <ais-refinement-list attribute-name='miscellaneous' :sort-by="['count:desc', 'name:asc']" inline-template>
-                <v-layout column>
-                  <v-flex v-for="facet in facetValues" :key="facet.name" my-0 py-0>
-                    <v-layout row align-center justify-center fill-height>
-                      <v-flex my-0 py-0>
-                        <v-checkbox :label=facet.name v-model="facet.isRefined" @change="toggleRefinement(facet)" hide-details></v-checkbox>
-                      </v-flex>
-                      <div class="badge mt-2">
-                        {{ facet.count }}
-                      </div>
-                    </v-layout>
-                  </v-flex>
-                </v-layout>
-              </ais-refinement-list>
+              <vdf-filter facetName='miscellaneous'></vdf-filter>
             </v-flex>
 
             <v-flex>
               <h3>Organizator</h3>
-              <ais-refinement-list attribute-name='organizer' :sort-by="['count:desc', 'name:asc']" inline-template>
-                <v-layout column fill-height>
-                  <v-flex v-for="facet in facetValues" :key="facet.name" my-0 py-0>
-                    <v-layout row align-center justify-center fill-height>
-                      <v-flex my-0 py-0>
-                        <v-checkbox :label=facet.name v-model="facet.isRefined" @change="toggleRefinement(facet)" hide-details></v-checkbox>
-                      </v-flex>
-                      <div class="badge mt-2">
-                        {{ facet.count }}
-                      </div>
-                    </v-layout>
-                  </v-flex>
-                </v-layout>
-              </ais-refinement-list>
+              <vdf-filter facetName='organizer'></vdf-filter>
             </v-flex>
 
           </v-layout>
@@ -82,12 +43,14 @@
 import VdfSportFilter from '~/components/SportFilter'
 import VdfMiscFilter from '~/components/MiscFilter'
 import VdfResults from '~/components/Results'
+import VdfFilter from '~/components/Filter'
 
 export default {
   components: {
     VdfResults,
     VdfMiscFilter,
-    VdfSportFilter
+    VdfSportFilter,
+    VdfFilter
   },
   data: () => ({
     drawer: null
