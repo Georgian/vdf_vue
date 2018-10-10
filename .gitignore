@@ -17,3 +17,7 @@ selenium-debug.log
 *.sln
 secrets.json
 .nuxt
+.serverless/cloudformation-template-create-stack.json
+.serverless/cloudformation-template-update-stack.json
+.serverless/serverless-state.json
+.serverless/varfdeforma.zip
