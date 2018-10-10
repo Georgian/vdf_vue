@@ -15,6 +15,7 @@
 <script>
 import GoogleMapsApiLoader from 'google-maps-api-loader'
 import MapProvider from './MapProvider'
+import Secrets from '../../../secrets.json'
 
 export default {
   props: {
@@ -32,7 +33,7 @@ export default {
   },
   mounted () {
     GoogleMapsApiLoader({
-      apiKey: this.apiKey
+      apiKey: Secrets.GMAP_API_KEY
     }).then((google) => {
       this.google = google
       this.initializeMap()

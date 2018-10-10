@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Map</h1>
-    asd
     <map-loader
       apiKey="AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA"
       :map-config="mapConfig"
@@ -9,6 +8,7 @@
       <template v-for="marker in vdfEvents">
         <child-marker :position="coordinateStringToObject(marker.locationCoordinates)" />
       </template>
+      <info-window></info-window>
     </map-loader>
   </div>
 </template>
