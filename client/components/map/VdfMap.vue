@@ -6,7 +6,7 @@
       :map-config="mapConfig"
     >
       <template v-for="marker in vdfEvents">
-        <child-marker :position="coordinateStringToObject(marker.locationCoordinates)" />
+        <child-marker :position="coordinateStringToObject(marker.locationCoordinates)"></child-marker>
       </template>
       <info-window></info-window>
     </map-loader>
@@ -25,7 +25,7 @@ export default {
   data(){
     return {
       mapConfig: {
-        zoom: 12,
+        zoom: 7,
         center: { lat: 45.919849, lng: 25.0203875 }
       }
     }
