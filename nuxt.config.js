@@ -1,19 +1,11 @@
 // nuxt.config.js
-export default {
+module.exports = {
   mode: 'universal',
   plugins: [
     '~/plugins/main.js',
     '~/plugins/vuetify.js',
     '~/plugins/search.js'
   ],
-
-  /*
-   * Global CSS
-   * TODO this is problematic
-   */
-  // css: [
-  //   '~/assets/styles/app.styl'
-  // ],
 
   head: {
     htmlAttrs: {
@@ -26,7 +18,6 @@ export default {
       { hid: 'description', name: 'description', content: 'Concursuri ciclism mountain-bike sosea velodrom ciclocross' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-  icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
