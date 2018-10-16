@@ -5,8 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "dev": "nuxt",
-    "deploy": "nuxt build && sls deploy function -f nuxt",
-    "deploy-full": "nuxt build && sls deploy"
+    "deploy": "nuxt build && sls deploy"
   },
   "keywords": [],
   "author": "",
