@@ -8,7 +8,6 @@
       <template v-for="marker in vdfEvents">
         <child-marker :position="coordinateStringToObject(marker.locationCoordinates)"></child-marker>
       </template>
-      <info-window></info-window>
     </map-loader>
   </div>
 </template>

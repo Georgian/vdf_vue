@@ -1,12 +1,18 @@
 <template>
   <v-card hover height="430px" class="flexcard">
 
-    <v-img
+    <!--<v-img
       :src="vdfEvent.photoLink"
       height="200px"
       max-height="200px"
       :style="vdfEvent.isPastEvent() ? 'filter: grayscale(100%);' : ''"
-    ></v-img>
+    ></v-img>-->
+
+    <img
+      v-lazy="vdfEvent.photoLink"
+      height="200px"
+      :style="vdfEvent.isPastEvent() ? 'filter: grayscale(100%);' : ''"
+    />
 
     <v-flex pb-0>
       <h3>{{vdfEvent.name}}</h3>

@@ -35,6 +35,32 @@ module.exports = {
           icons: ['faBicycle', 'faCalendarAlt', 'faLocationArrow', 'faHeart']
         }
       ]
+    }],
+    ['@nuxtjs/sitemap', {
+      // TODO refactor this
+      routes: [
+        '/',
+        '/termeni',
+        '/event/1',
+        '/event/2',
+        '/event/3',
+        '/event/4',
+        '/event/5',
+        '/event/6',
+        '/event/7',
+        '/event/8',
+        '/event/9',
+        '/event/10',
+        '/event/11',
+        '/event/12',
+        '/event/13',
+        '/event/14',
+        '/event/15',
+        '/event/16',
+        '/event/17',
+        '/event/18',
+        '/event/19',
+      ]
     }]
   ],
   srcDir: 'client/',

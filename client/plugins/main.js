@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
 import VueProgressBar from 'vue-progressbar'
+import VueLazyload from 'vue-lazyload'
 
 // Vue.use(VueGoogleMaps, {
 //   load: {
@@ -10,6 +11,8 @@ import VueProgressBar from 'vue-progressbar'
 //     libraries: 'map'
 //   }
 // })
+
+Vue.use(VueLazyload)
 
 Vue.use(VueProgressBar, {
   color: '#8860D0',
