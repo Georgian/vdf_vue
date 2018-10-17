@@ -6,10 +6,10 @@ module.exports = {
     '~/plugins/vuetify.js',
     '~/plugins/search.js'
   ],
-
   head: {
     htmlAttrs: {
       lang: 'ro',
+      prefix: 'og: http://ogp.me/ns#'
     },
     title: 'Vârf de Formă | Toate concursurile importante la un loc',
     meta: [
@@ -22,13 +22,40 @@ module.exports = {
     ]
   },
   build: {
+    html: {
+      minify: {
+        collapseBooleanAttributes: true,
+        collapseWhitespace: false,
+        decodeEntities: true,
+        minifyCSS: true,
+        minifyJS: true,
+        processConditionalComments: true,
+        removeAttributeQuotes: false,
+        removeComments: false,
+        removeEmptyAttributes: true,
+        removeOptionalTags: false,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: false,
+        removeStyleLinkTypeAttributes: false,
+        removeTagWhitespace: false,
+        sortClassName: false,
+        trimCustomFragments: true,
+        useShortDoctype: true
+      }
+    },
     vendor: [
       'axios'
     ],
     publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/`, // <= add the path to the cached files
   },
   modules: [
-     ['nuxt-fontawesome', {
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-126133683-1',
+      /*debug: {
+        sendHitTask: false // TODO Don't forget to change this
+      }*/
+    }],
+    ['nuxt-fontawesome', {
       imports: [
         {
           set: '@fortawesome/free-solid-svg-icons',

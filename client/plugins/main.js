@@ -1,7 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import VueAnalytics from 'vue-analytics'
 import VueProgressBar from 'vue-progressbar'
 import VueLazyload from 'vue-lazyload'
 
@@ -80,10 +79,4 @@ Vue.mixin({
       return result
     }
   }
-})
-
-// ----------------------------
-
-Vue.use(VueAnalytics, {
-  id: 'UA-126133683-1'
 })

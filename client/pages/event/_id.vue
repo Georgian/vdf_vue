@@ -114,13 +114,38 @@ import VdfDirMap from '../../components/DirectionsMap'
 
 export default {
   name: 'EventPage',
-  components: {VdfDirMap},
+  components: { VdfDirMap },
   data: function () {
     return {
       loadingData: false,
       error: null,
       vdfEvent: null,
-      vdfEventDates: null
+      vdfEventDates: null,
+      metaTitle: 'Vârf de Formă',
+      metaDesc: 'Concurs ciclism',
+      metaImg: ''
+    }
+  },
+  head () {
+    return {
+      title: this.metaTitle,
+      meta: [
+        {
+          hid: `og:title`,
+          name: 'og:title',
+          content: this.metaTitle
+        },
+        {
+          hid: `og:description`,
+          name: 'og:description',
+          content: this.metaDesc
+        },
+        {
+          hid: `og:image`,
+          name: 'og:image',
+          content: this.metaImg
+        }
+      ]
     }
   },
   created () {
@@ -139,11 +164,17 @@ export default {
         .then(response => {
           self.loadingData = false
           self.vdfEvent = response.data
+          this.setMetadata(self.vdfEvent)
           this.computeEventDates(self.vdfEvent)
         })
         .catch(error => {
           self.error = error.response
         })
+    },
+    setMetadata: function (vdfEvent) {
+      this.metaTitle = vdfEvent.name + ' | ' + this.metaTitle
+      this.metaDesc = vdfEvent.description.substr(0, 100) + '...'
+      this.metaImg = vdfEvent.photoLink
     },
     computeEventDates: function (vdfEvent) {
       this.vdfEventDates = this.formatDate(vdfEvent.dateStart, vdfEvent.dateEnd)
