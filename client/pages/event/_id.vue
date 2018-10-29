@@ -115,6 +115,19 @@ import VdfDirMap from '../../components/DirectionsMap'
 export default {
   name: 'EventPage',
   components: { VdfDirMap },
+  async asyncData ({ params }) {
+    return vdfapi.get('/event/' + params.id)
+      .then((res) => {
+        let vdfEvent = res.data
+        return {
+          vdfEvent: vdfEvent,
+          loadingData: false,
+          metaTitle: vdfEvent.name + ' | Vârf de Formă',
+          metaDesc: vdfEvent.description.substr(0, 100) + '...',
+          metaImg: vdfEvent.photoLink
+        }
+      })
+  },
   data: function () {
     return {
       loadingData: false,
@@ -132,53 +145,23 @@ export default {
       meta: [
         {
           hid: `og:title`,
-          name: 'og:title',
+          property: 'og:title',
           content: this.metaTitle
         },
         {
           hid: `og:description`,
-          name: 'og:description',
+          property: 'og:description',
           content: this.metaDesc
         },
         {
           hid: `og:image`,
-          name: 'og:image',
+          property: 'og:image',
           content: this.metaImg
         }
       ]
     }
   },
-  created () {
-    this.fetchVdfEvent()
-  },
-  watch: {
-    // Call again the method if the route changes
-    '$route': 'fetchVdfEvent'
-  },
   methods: {
-    fetchVdfEvent: function () {
-      this.error = this.vdfEvent = null
-      this.loadingData = true
-      let self = this
-      vdfapi.get('/event/' + this.$route.params.id)
-        .then(response => {
-          self.loadingData = false
-          self.vdfEvent = response.data
-          this.setMetadata(self.vdfEvent)
-          this.computeEventDates(self.vdfEvent)
-        })
-        .catch(error => {
-          self.error = error.response
-        })
-    },
-    setMetadata: function (vdfEvent) {
-      this.metaTitle = vdfEvent.name + ' | ' + this.metaTitle
-      this.metaDesc = vdfEvent.description.substr(0, 100) + '...'
-      this.metaImg = vdfEvent.photoLink
-    },
-    computeEventDates: function (vdfEvent) {
-      this.vdfEventDates = this.formatDate(vdfEvent.dateStart, vdfEvent.dateEnd)
-    },
     handleEmptyField: function (field) {
       return field && field !== '' ? field : '<b>Nici o informație</b>'
     }
