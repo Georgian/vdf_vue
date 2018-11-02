@@ -12,8 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
+    "@nuxtjs/auth": "^4.5.3",
+    "@nuxtjs/axios": "^5.3.4",
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/sitemap": "^0.1.1",
+    "@nuxtjs/toast": "^3.0.1",
     "algoliasearch-helper": "^2.26.1",
     "axios": "^0.18.0",
     "express": "^4.16.3",

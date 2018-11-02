@@ -48,7 +48,44 @@ module.exports = {
     ],
     publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/`, // <= add the path to the cached files
   },
+  axios: {
+    baseURL: 'https://api.varfdeforma.ro',
+    // baseURL: 'http://localhost:5000',
+    withCredentials: false,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  },
+  toast: {
+    position: 'top-right',
+    duration: 2000
+  },
+  loading: {
+    name: 'chasing-dots',
+    color: '#ff5638',
+    background: 'white',
+    height: '4px'
+  },
+  auth: {
+    strategies: {
+      facebook: {
+        client_id: `${require('./secrets.json').FB_APP_ID}`,
+        userinfo_endpoint: 'https://graph.facebook.com/v3.2/me?fields=name,email',
+        scope: ['public_profile', 'email']
+      }
+    },
+    redirect: {
+      login: '/?login=1',
+      logout: '/',
+      user: '/',
+      callback: '/'
+    }
+  },
   modules: [
+    '@nuxtjs/auth',
+    '@nuxtjs/toast',
+    '@nuxtjs/axios',
     ['@nuxtjs/google-analytics', {
       id: 'UA-126133683-1',
       /*debug: {
@@ -59,7 +96,7 @@ module.exports = {
       imports: [
         {
           set: '@fortawesome/free-solid-svg-icons',
-          icons: ['faBicycle', 'faCalendarAlt', 'faLocationArrow', 'faHeart']
+          icons: ['faBicycle', 'faCalendarAlt', 'faLocationArrow', 'faHeart', 'faSignInAlt']
         }
       ]
     }],

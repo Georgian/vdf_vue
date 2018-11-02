@@ -1,5 +1,4 @@
 import Vuex from 'vuex'
-import vdfapi from '../plugins/vdfapi'
 
 const today = new Date()
 const searchableFields = ['name', 'description', 'discipline', 'organizer', 'locationName']
@@ -56,7 +55,7 @@ const createStore = () => {
     actions: {
       loadEvents({commit}) {
         commit('SET_LOADING', true)
-        vdfapi
+        this.$axios
           .get('/event')
           .then(r => r.data)
           .then(events => {

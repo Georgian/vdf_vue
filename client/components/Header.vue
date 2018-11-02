@@ -9,9 +9,10 @@
       <vdf-input v-if="$route.name === 'index'"></vdf-input>
     </v-flex>
     <v-spacer></v-spacer>
-    <!--<v-toolbar-items>-->
-      <!--<v-btn flat><font-awesome-icon icon="coffee" />Despre</v-btn>-->
-    <!--</v-toolbar-items>-->
+    <v-toolbar-items>
+      <v-btn flat @click="login()"><font-awesome-icon icon="sign-in-alt" />Login</v-btn>
+      <v-btn flat @click="logout()">Logout</v-btn>
+    </v-toolbar-items>
   </v-toolbar>
 </template>
 
@@ -21,6 +22,18 @@ export default {
   name: 'vdf-header',
   components: {
     'vdf-input': Input
+  },
+  methods: {
+    async login () {
+      await this.$auth.loginWith('facebook').catch(e => {
+        this.$toast.show('Error', { icon: 'sign-in-alt' })
+      })
+    },
+    async logout () {
+      await this.$auth.logout().catch(e => {
+        this.$toast.show('Error', { icon: 'sign-in-alt' })
+      })
+    }
   }
 }
 </script>
