@@ -9,6 +9,7 @@ const matchesQuery = function (event, query) { return searchableFields.some(fiel
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      showDrawer: false,
       isLoading: false,
       events: []
     },
@@ -54,6 +55,9 @@ const createStore = () => {
       }
     },
     actions: {
+      showHideDrawer({commit, state}) {
+        commit('SET_DRAWER', !state.showDrawer)
+      },
       loadEvents({commit}) {
         commit('SET_LOADING', true)
         vdfapi
@@ -78,6 +82,9 @@ const createStore = () => {
       },
       SET_LOADING(state, isLoading) {
         state.isLoading = isLoading
+      },
+      SET_DRAWER(state, showDrawer) {
+        state.showDrawer = showDrawer
       }
     }
   })

@@ -7,6 +7,7 @@
 
       <vdf-header />
       <nuxt />
+      <vdf-nav-drawer />
       <vdf-footer />
 
       <no-ssr>
@@ -28,11 +29,12 @@
 <script>
 import VdfHeader from '~/components/Header'
 import VdfFooter from '~/components/Footer'
+import VdfNavDrawer from '~/components/NavDrawer'
 import CookieLaw from 'vue-cookie-law'
 import createSearchStoreFromVuex from '../plugins/search'
 
 export default {
-  components: {VdfFooter, VdfHeader, CookieLaw},
+  components: { VdfFooter, VdfHeader, VdfNavDrawer, CookieLaw },
   data: () => ({
     searchStore: null
   }),

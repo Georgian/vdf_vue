@@ -1,6 +1,7 @@
 <template>
-  <v-toolbar>
+  <v-toolbar app absolute clipped-left>
     <vue-progress-bar></vue-progress-bar>
+    <v-toolbar-side-icon v-on:click="showHideDrawer"></v-toolbar-side-icon>
     <router-link to="/">
       <span class="title ml-3" style="color: black">Vârf de Formă</span>
       <sup class="mr-5" style="background-color: indianred; font-weight: bold">BETA</sup>
@@ -21,6 +22,11 @@ export default {
   name: 'vdf-header',
   components: {
     'vdf-input': Input
+  },
+  methods: {
+    showHideDrawer () {
+      this.$store.dispatch('showHideDrawer')
+    }
   }
 }
 </script>
