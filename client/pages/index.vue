@@ -2,7 +2,9 @@
   <v-content>
     <v-container grid-list-xl>
       <v-layout row wrap>
+        <v-flex>
           <vdf-results></vdf-results>
+        </v-flex>
       </v-layout>
     </v-container>
   </v-content>

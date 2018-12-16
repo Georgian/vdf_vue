@@ -6,35 +6,43 @@
     class="grey lighten-4"
     app
   >
-    <v-flex>
-    <v-layout column>
-
-      <v-flex>
+    <v-list
+      dense
+      class="grey lighten-4"
+    >
+      <v-flex xs12 mx-3>
         <vdf-misc-filter></vdf-misc-filter>
       </v-flex>
 
-      <v-flex>
-        <h3>Sport</h3>
+      <v-divider dark class="my-2"></v-divider>
+
+      <v-flex xs12 mx-3>
+        <v-subheader>Sport</v-subheader>
         <vdf-sport-filter></vdf-sport-filter>
       </v-flex>
 
-      <v-flex pb-5>
-        <h3>Disciplina</h3>
+      <v-divider dark class="my-2"></v-divider>
+
+      <v-flex xs12 mx-3>
+        <v-subheader>Disciplină</v-subheader>
         <vdf-filter facetName='discipline'></vdf-filter>
       </v-flex>
 
-      <v-flex pb-5>
-        <h3>Etichetă</h3>
+      <v-divider dark class="my-2"></v-divider>
+
+      <v-flex xs12 mx-3>
+        <v-subheader>Etichetă</v-subheader>
         <vdf-filter facetName='miscellaneous'></vdf-filter>
       </v-flex>
 
-      <v-flex>
-        <h3>Organizator</h3>
+      <v-divider dark class="my-2"></v-divider>
+
+      <v-flex xs12 mx-3>
+        <v-subheader>Organizator</v-subheader>
         <vdf-filter facetName='organizer'></vdf-filter>
       </v-flex>
 
-    </v-layout>
-      </v-flex>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -46,22 +54,30 @@ import VdfFilter from '~/components/Filter'
 
 export default {
   name: 'vdf-nav-drawer',
+  data: () => ({
+    showDrawer: false
+  }),
   components: {
     VdfResults,
     VdfMiscFilter,
     VdfSportFilter,
     VdfFilter
   },
-  computed: {
-    showDrawer: {
-      get () {
-        return this.$store.state.showDrawer
-      },
-      set (newVal) {
-        this.$store.commit('SET_DRAWER', newVal)
-      }
-    }
+  created () {
+    this.$eventBus.$on('toggleDrawer', () => {
+      this.showDrawer = !this.showDrawer
+    })
   }
+  // computed: {
+  //   showDrawer: {
+  //     get () {
+  //       return this.$store.state.showDrawer
+  //     },
+  //     set (newVal) {
+  //       this.$store.commit('SET_DRAWER', newVal)
+  //     }
+  //   }
+  // }
 }
 </script>
 

@@ -5,9 +5,9 @@
     :search-store='searchStore'>
     <v-app id='vdf'>
 
+      <vdf-nav-drawer />
       <vdf-header />
       <nuxt />
-      <vdf-nav-drawer />
       <vdf-footer />
 
       <no-ssr>

@@ -5,13 +5,15 @@ const today = new Date()
 const searchableFields = ['name', 'description', 'discipline', 'organizer', 'locationName']
 const strMatches = function (a, b) { return a && a.toLowerCase().includes(b) }
 const matchesQuery = function (event, query) { return searchableFields.some(field => strMatches(event[field], query.toLowerCase())) }
+const eventsDisplayModesConst = ['grid', 'map']
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
       showDrawer: false,
       isLoading: false,
-      events: []
+      events: [],
+      eventsDisplayMode: eventsDisplayModesConst[0]
     },
     getters: {
       events: state => state.events,
@@ -55,6 +57,12 @@ const createStore = () => {
       }
     },
     actions: {
+      switchToNextDisplayMode({commit, state}) {
+        let currentDisplayMode = state.eventsDisplayMode
+        let idx = eventsDisplayModesConst.indexOf(currentDisplayMode) + 1
+        let nextDisplayMode = idx >= eventsDisplayModesConst.length ? eventsDisplayModesConst[0] : eventsDisplayModesConst[idx]
+        commit('SET_EVENTS_DISPLAY_MODE', nextDisplayMode)
+      },
       showHideDrawer({commit, state}) {
         commit('SET_DRAWER', !state.showDrawer)
       },
@@ -85,6 +93,9 @@ const createStore = () => {
       },
       SET_DRAWER(state, showDrawer) {
         state.showDrawer = showDrawer
+      },
+      SET_EVENTS_DISPLAY_MODE(state, eventsDisplayMode) {
+        state.eventsDisplayMode = eventsDisplayMode
       }
     }
   })

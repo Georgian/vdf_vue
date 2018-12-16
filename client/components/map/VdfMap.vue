@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Map</h1>
     <map-loader
       apiKey="AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA"
       :map-config="mapConfig"

@@ -27,32 +27,12 @@
 </v-btn-toggle>-->
 
   <!-- TODO conver to v-for -->
-  <v-layout column>
-    <v-flex py-0 my-0>
-      <v-radio-group v-model="radioGroup" :mandatory="true">
-        <v-layout row>
-          <v-flex my-0 py-0>
-            <v-radio label="Toate"      value="radio-1" v-on:change="showOnly('All')"></v-radio>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex my-0 py-0>
-            <v-radio label="MTB"        value="radio-2" v-on:change="showOnly('MTB')"></v-radio>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex my-0 py-0>
-            <v-radio label="Șosea"      value="radio-3" v-on:change="showOnly('Șosea')"></v-radio>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex my-0 py-0>
-            <v-radio label="Ciclocross" value="radio-4" v-on:change="showOnly('Ciclocross')"></v-radio>
-          </v-flex>
-        </v-layout>
-      </v-radio-group>
-    </v-flex>
-  </v-layout>
+  <v-radio-group v-model="radioGroup" :mandatory="true">
+    <v-radio label="Toate" value="radio-1" v-on:change="showOnly('All')"></v-radio>
+    <v-radio label="MTB"        value="radio-2" v-on:change="showOnly('MTB')"></v-radio>
+    <v-radio label="Șosea"      value="radio-3" v-on:change="showOnly('Șosea')"></v-radio>
+    <v-radio label="Ciclocross" value="radio-4" v-on:change="showOnly('Ciclocross')"></v-radio>
+  </v-radio-group>
 </template>
 <script>
 import { Component } from 'vue-instantsearch'
@@ -85,7 +65,4 @@ export default {
 </script>
 
 <style scoped>
-.v-btn-toggle {
-  flex-direction: column;
-}
 </style>
