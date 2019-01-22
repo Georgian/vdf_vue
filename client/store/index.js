@@ -10,7 +10,8 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       isLoading: false,
-      events: []
+      events: [],
+      user: null
     },
     getters: {
       events: state => state.events,
@@ -70,6 +71,49 @@ const createStore = () => {
             commit('SET_EVENTS', events)
             commit('SET_LOADING', false)
           })
+      },
+      fetchUser ({commit}) {
+        return vdfapi
+          .get('/me')
+          .then(response => {
+            commit('SET_USER', response.data.result)
+            return response
+          })
+          .catch(error => {
+            commit('RESET_USER')
+            return error
+          })
+      },
+      loginUser ({commit}, data) {
+        return vdfapi
+          .post('/auth/login', data)
+          .then(response => {
+            commit('SET_USER', response.data.user)
+            return response
+          })
+      },
+
+      // oauthRedirectUri: this.baseURL + '/oauth2/redirect',
+      // facebookAuthUrl: this.baseURL + '/oauth2/authorize/facebook?redirect_uri=' + this.oauthRedirectUri
+
+      loginFacebook ({commit}, data) {
+        return vdfapi
+          .get('/oauth2/authorize/facebook?redirect_uri=http://localhost:8080/oauth2/redirect', data)
+          .then(response => {
+            commit('SET_USER', response.data.user)
+            return response
+          })
+      },      signupUser ({commit}, data) {
+        return vdfapi
+          .post('/auth/signup', data)
+          .then(response => {
+            commit('SET_USER', response.data.user)
+            return response
+          })
+      },
+      resetUser ({commit}) {
+        commit('RESET_USER')
+        return Promise.resolve()
       }
     },
     mutations: {
@@ -78,6 +122,12 @@ const createStore = () => {
       },
       SET_LOADING(state, isLoading) {
         state.isLoading = isLoading
+      },
+      SET_USER (state, data) {
+        state.user = data
+      },
+      RESET_USER (state) {
+        state.user = null
       }
     }
   })
