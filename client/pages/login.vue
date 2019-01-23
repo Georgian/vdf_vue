@@ -3,13 +3,13 @@
     <v-card class="elevation-10" style="flex: 0 1 400px">
       <v-card-title class="headline">Log In</v-card-title>
       <v-card-text>
-        <v-form @submit.prevent="submit">
+        <v-form @submit.prevent="loginUser">
           <v-alert v-if="alert" :type="alert.type" value="true">{{alert.message}}</v-alert>
           <v-text-field label="Email" v-model="email"></v-text-field>
           <v-text-field label="Password" v-model="password" type="password"></v-text-field>
           <v-btn type="submit" :loading="loading" :disabled="loading">Log In</v-btn>
           <v-btn
-            href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:8080/oauth2/redirect"
+            href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:3000/signed-in"
             color="blue white--text" v-if="facebook_ready" :loading="facebook_loading" :disabled="facebook_loading">Log in with Facebook</v-btn>
         </v-form>
       </v-card-text>
@@ -19,6 +19,10 @@
 
 <script>
 export default {
+  mounted () {
+    if (this.$store.getters.isAuthenticated)
+      this.$router.replace('/')
+  },
   data: function () {
     return {
       email: '',
@@ -31,7 +35,7 @@ export default {
   },
   name: 'Login',
   methods: {
-    submit() {
+    loginUser() {
       this.alert = null
       this.loading = true
       this.$store.dispatch('loginUser', {
@@ -44,25 +48,6 @@ export default {
         this.$router.push('/')
       }).catch(err => {
         this.loading = false
-        if (err.response && err.response.data) {
-          console.log(err.response.data.message)
-          this.alert = {type: 'error', message: err.response.data.message || err.response.status}
-        }
-      })
-    },
-    facebook_submit() {
-      this.alert = null
-      this.facebook_loading = true
-      this.$store.dispatch('loginFacebook', {
-        email: this.email,
-        password: this.password
-      }).then(result => {
-        console.log(result.data)
-        this.alert = {type: 'success', message: result.data.message}
-        this.facebook_loading = false
-        this.$router.push('/')
-      }).catch(err => {
-        this.facebook_loading = false
         if (err.response && err.response.data) {
           console.log(err.response.data.message)
           this.alert = {type: 'error', message: err.response.data.message || err.response.status}

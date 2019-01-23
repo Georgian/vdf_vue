@@ -41,7 +41,8 @@ export default {
     // this.$Progress.start()
   },
   mounted () {
-    this.$store.dispatch('loadEvents')
+    if (this.$route.path === '/')
+      this.$store.dispatch('loadEvents')
   },
   computed: {
     eventCount () {

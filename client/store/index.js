@@ -9,11 +9,15 @@ const matchesQuery = function (event, query) { return searchableFields.some(fiel
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      token: process.browser ? localStorage.getItem('token') : null,
       isLoading: false,
       events: [],
       user: null
     },
     getters: {
+      isAuthenticated (state) {
+        return !!state.user
+      },
       events: state => state.events,
       eventsByFacets: state => facets => {
         return state.events.filter(event => {
@@ -92,18 +96,7 @@ const createStore = () => {
             return response
           })
       },
-
-      // oauthRedirectUri: this.baseURL + '/oauth2/redirect',
-      // facebookAuthUrl: this.baseURL + '/oauth2/authorize/facebook?redirect_uri=' + this.oauthRedirectUri
-
-      loginFacebook ({commit}, data) {
-        return vdfapi
-          .get('/oauth2/authorize/facebook?redirect_uri=http://localhost:8080/oauth2/redirect', data)
-          .then(response => {
-            commit('SET_USER', response.data.user)
-            return response
-          })
-      },      signupUser ({commit}, data) {
+      signupUser ({commit}, data) {
         return vdfapi
           .post('/auth/signup', data)
           .then(response => {
