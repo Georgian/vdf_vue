@@ -9,6 +9,10 @@
       <vdf-input v-if="$route.name === 'index'"></vdf-input>
     </v-flex>
     <vdf-display-mode-switch></vdf-display-mode-switch>
+    <v-toolbar-items>
+      <v-btn v-if="!isAuthenticated" flat @click="goToLoginPage()"><font-awesome-icon icon="sign-in-alt" />Login</v-btn>
+      <v-btn v-if="isAuthenticated" flat @click="logout()">Logout</v-btn>
+    </v-toolbar-items>
     <v-spacer></v-spacer>
     <!--<v-toolbar-items>-->
       <!--<v-btn flat><font-awesome-icon icon="coffee" />Despre</v-btn>-->
@@ -19,16 +23,29 @@
 <script>
 import Input from './Input'
 import VdfDisplayModeSwitch from './DisplayModeSwitch'
+
 export default {
   name: 'vdf-header',
   components: {
     VdfDisplayModeSwitch,
     'vdf-input': Input
   },
+  computed: {
+    isAuthenticated () {
+      return this.$store.getters['modules/auth/isAuthenticated']
+    }
+  },
   methods: {
     showHideDrawer () {
       // this.$store.dispatch('showHideDrawer')
       this.$eventBus.$emit('toggleDrawer');
+    },
+    goToLoginPage() {
+      this.$router.replace('/login')
+    },
+    logout() {
+      this.$store.dispatch('modules/auth/logout')
+      this.$router.replace('/')
     }
   }
 }
