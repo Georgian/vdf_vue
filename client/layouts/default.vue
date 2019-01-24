@@ -5,6 +5,7 @@
     :search-store='searchStore'>
     <v-app id='vdf'>
 
+      <vdf-nav-drawer />
       <vdf-header />
       <nuxt />
       <vdf-footer />
@@ -28,12 +29,13 @@
 <script>
 import VdfHeader from '~/components/Header'
 import VdfFooter from '~/components/Footer'
+import VdfNavDrawer from '~/components/NavDrawer'
 import CookieLaw from 'vue-cookie-law'
 import createSearchStoreFromVuex from '../plugins/search'
 import { mapGetters } from 'vuex'
 
 export default {
-  components: {VdfFooter, VdfHeader, CookieLaw},
+  components: { VdfFooter, VdfHeader, VdfNavDrawer, CookieLaw },
   data: () => ({
     searchStore: null
   }),

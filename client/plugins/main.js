@@ -11,6 +11,8 @@ import VueLazyload from 'vue-lazyload'
 //   }
 // })
 
+Vue.prototype.$eventBus = new Vue()
+
 Vue.use(VueLazyload)
 
 Vue.use(VueProgressBar, {

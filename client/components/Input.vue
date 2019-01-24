@@ -1,5 +1,6 @@
 <template>
   <v-text-field
+    class="ml-4"
     v-model.lazy="query"
     solo-inverted
     flat

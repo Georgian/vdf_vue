@@ -1,23 +1,14 @@
 <template>
-  <v-tabs color="primary">
-
-    <v-tab ripple id="tab1">Listă</v-tab>
-    <v-tab-item>
-      <v-container grid-list-md>
-        <v-layout row wrap xs12>
-          <v-flex v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12>
-            <vdf-event-card :vdfEvent=vdfEvent></vdf-event-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-tab-item>
-
-    <v-tab id="tab2">Hartă</v-tab>
-    <v-tab-item>
-      <vdf-map :vdfEvents="results"></vdf-map>
-    </v-tab-item>
-
-  </v-tabs>
+  <v-container grid-list-md>
+    <v-layout row wrap xs12>
+      <v-flex v-if="showGrid" v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12>
+        <vdf-event-card :vdfEvent=vdfEvent></vdf-event-card>
+      </v-flex>
+      <v-flex v-if="!showGrid" xs12>
+        <vdf-map :vdfEvents="results"></vdf-map>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -27,6 +18,9 @@ import VdfMap from './map/VdfMap'
 export default {
   name: 'vdf-results',
   mixins: [Component],
+  data: () => ({
+    showGrid: true
+  }),
   components: {
     'vdf-event-card': EventCard,
     'vdf-map': VdfMap
@@ -40,13 +34,11 @@ export default {
       type: Number,
     },
   },
-/*  data: function data() {
-    return {
-      blockClassName: 'ais-results',
-    };
-  },*/
   created: function created() {
     this.updateResultsPerPage();
+    this.$eventBus.$on('toggleDisplayMode', () => {
+      this.showGrid = !this.showGrid
+    })
   },
   watch: {
     resultsPerPage: function resultsPerPage() {
