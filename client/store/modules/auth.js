@@ -7,13 +7,13 @@ const defaultState = () => ({
   user: null
 })
 
-const getters = () => ({
+const getters = {
   isAuthenticated (state) {
     return !!state.user
   }
-})
+}
 
-const mutations = () => ({
+const mutations = {
   SET_USER: function (state, user) {
     state.user = user
   },
@@ -21,9 +21,9 @@ const mutations = () => ({
     state.token = token
     vdfapi.defaults.headers = { Authorization: 'Bearer ' + token }
   }
-})
+}
 
-const actions = () => ({
+const actions = {
   nuxtServerInit({ commit }, { req }) {
     try {
       const jwtCookie = req.headers.cookie.split(";").find(c => c.trim().startsWith("token="))
@@ -43,10 +43,7 @@ const actions = () => ({
   async login({ commit }, loginData) {
     try {
       const { data } = await vdfapi.post('/auth/login', loginData)
-      let payload = jwtDecode(data.token)
-      Cookie.set('token', data.token, { expires: 1 / 24 * 6 })  // Expire for 6h
-      commit('SET_TOKEN', data.token)
-      commit('SET_USER', payload)
+      dispatch('loginSuccess', data.token)
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials')
@@ -54,12 +51,18 @@ const actions = () => ({
       throw error
     }
   },
+  async loginSuccess({ commit }, token) {
+    let payload = jwtDecode(token)
+    Cookie.set('token', token, { expires: 1 / 24 * 6 })  // Expire for 6h
+    commit('SET_TOKEN', token)
+    commit('SET_USER', payload)
+  },
   async logout({ commit }) {
     Cookie.remove('token')
     commit('SET_USER', null)
     commit('SET_TOKEN', null)
   }
-})
+}
 
 const inBrowser = typeof window !== 'undefined';
 // if in browser, use pre-fetched state injected by SSR

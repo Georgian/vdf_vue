@@ -86,9 +86,9 @@ const inBrowser = typeof window !== 'undefined';
 const state = (inBrowser && window.__INITIAL_STATE__) ? window.__INITIAL_STATE__.page : defaultState;
 
 export default {
-  state: state,
+  state,
   actions,
-  mutations: mutations,
-  getters: getters,
+  mutations,
+  getters,
   namespaced: true
 }
