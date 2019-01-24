@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const vdfapi = axios.create({
-  // baseURL: 'https://api.varfdeforma.ro',
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://api.varfdeforma.ro',
+  // baseURL: 'http://localhost:8080',
   withCredentials: false,
   headers: {
     'Accept': 'application/json',
@@ -17,21 +17,5 @@ const vdfapi = axios.create({
 //     requestLink = requestLink + '&' + rp
 //   })
 // }
-
-vdfapi.interceptors.request.use(
-  (config) => {
-    let token = localStorage.getItem('token');
-
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${ token }`;
-    }
-
-    return config;
-  },
-
-  (error) => {
-    return Promise.reject(error);
-  }
-)
 
 export default vdfapi

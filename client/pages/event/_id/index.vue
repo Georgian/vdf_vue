@@ -84,9 +84,9 @@
 
         <v-expansion-panel-content>
           <div slot="header">Locație</div>
-<!--
-          <vdf-dir-map :vdf-event="vdfEvent"></vdf-dir-map>
--->
+          <!--
+                    <vdf-dir-map :vdf-event="vdfEvent"></vdf-dir-map>
+          -->
         </v-expansion-panel-content>
 
         <v-expansion-panel-content>
@@ -109,64 +109,64 @@
 </template>
 
 <script>
-import vdfapi from '../../plugins/vdfapi'
-import VdfDirMap from '../../components/DirectionsMap'
+  import vdfapi from '~/plugins/vdfapi'
+  import VdfDirMap from '~/components/DirectionsMap'
 
-export default {
-  name: 'EventPage',
-  components: { VdfDirMap },
-  async asyncData ({ params }) {
-    return vdfapi.get('/event/' + params.id)
-      .then((res) => {
-        let vdfEvent = res.data
-        return {
-          vdfEvent: vdfEvent,
-          loadingData: false,
-          metaTitle: vdfEvent.name + ' | Vârf de Formă',
-          metaDesc: vdfEvent.description.substr(0, 100) + '...',
-          metaImg: vdfEvent.photoLink
-        }
-      })
-  },
-  data: function () {
-    return {
-      loadingData: false,
-      error: null,
-      vdfEvent: null,
-      vdfEventDates: null,
-      metaTitle: 'Vârf de Formă',
-      metaDesc: 'Concurs ciclism',
-      metaImg: ''
-    }
-  },
-  head () {
-    return {
-      title: this.metaTitle,
-      meta: [
-        {
-          hid: `og:title`,
-          property: 'og:title',
-          content: this.metaTitle
-        },
-        {
-          hid: `og:description`,
-          property: 'og:description',
-          content: this.metaDesc
-        },
-        {
-          hid: `og:image`,
-          property: 'og:image',
-          content: this.metaImg
-        }
-      ]
-    }
-  },
-  methods: {
-    handleEmptyField: function (field) {
-      return field && field !== '' ? field : '<b>Nici o informație</b>'
+  export default {
+    name: 'EventPage',
+    components: { VdfDirMap },
+    async asyncData ({ params }) {
+      return vdfapi.get('/event/' + params.id)
+        .then((res) => {
+          let vdfEvent = res.data
+          return {
+            vdfEvent: vdfEvent,
+            loadingData: false,
+            metaTitle: vdfEvent.name + ' | Vârf de Formă',
+            metaDesc: vdfEvent.description.substr(0, 100) + '...',
+            metaImg: vdfEvent.photoLink
+          }
+        })
+    },
+    data: function () {
+      return {
+        loadingData: false,
+        error: null,
+        vdfEvent: null,
+        vdfEventDates: null,
+        metaTitle: 'Vârf de Formă',
+        metaDesc: 'Concurs ciclism',
+        metaImg: ''
+      }
+    },
+    head () {
+      return {
+        title: this.metaTitle,
+        meta: [
+          {
+            hid: `og:title`,
+            property: 'og:title',
+            content: this.metaTitle
+          },
+          {
+            hid: `og:description`,
+            property: 'og:description',
+            content: this.metaDesc
+          },
+          {
+            hid: `og:image`,
+            property: 'og:image',
+            content: this.metaImg
+          }
+        ]
+      }
+    },
+    methods: {
+      handleEmptyField: function (field) {
+        return field && field !== '' ? field : '<b>Nici o informație</b>'
+      }
     }
   }
-}
 </script>
 
 <style scoped>
