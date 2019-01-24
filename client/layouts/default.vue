@@ -30,6 +30,7 @@ import VdfHeader from '~/components/Header'
 import VdfFooter from '~/components/Footer'
 import CookieLaw from 'vue-cookie-law'
 import createSearchStoreFromVuex from '../plugins/search'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {VdfFooter, VdfHeader, CookieLaw},
@@ -42,9 +43,13 @@ export default {
   },
   mounted () {
     if (this.$route.path === '/')
-      this.$store.dispatch('loadEvents')
+      this.$store.dispatch('modules/events/loadEvents')
   },
   computed: {
+    ...mapGetters({
+      logicData: 'getAppLogicData',
+      coucou: 'getHelloThere'
+    }),
     eventCount () {
       return this.$store.getters.events
     }

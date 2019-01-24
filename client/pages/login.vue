@@ -38,7 +38,7 @@ export default {
     loginUser() {
       this.alert = null
       this.loading = true
-      this.$store.dispatch('loginUser', {
+      this.$store.dispatch('auth/login', {
         email: this.email,
         password: this.password
       }).then(result => {

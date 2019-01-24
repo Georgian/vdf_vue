@@ -77,7 +77,7 @@ var createSearchStoreFromVuex = function (store) {
        * important bit
        *
        */
-      var events = store.getters.eventsByFacets(requestParams)
+      var events = store.getters['modules/events/eventsByFacets'](requestParams)
       /**
        *
        *
