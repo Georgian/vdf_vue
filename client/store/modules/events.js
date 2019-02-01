@@ -5,7 +5,7 @@ const searchableFields = ['name', 'description', 'discipline', 'organizer', 'loc
 const strMatches = function (a, b) { return a && a.toLowerCase().includes(b) }
 const matchesQuery = function (event, query) { return searchableFields.some(field => strMatches(event[field], query.toLowerCase())) }
 
-const defaultState = () => ({
+const state = () => ({
   isLoading: false,
   events: [],
 })
@@ -80,10 +80,6 @@ const actions = {
       })
   },
 }
-
-const inBrowser = typeof window !== 'undefined';
-// if in browser, use pre-fetched state injected by SSR
-const state = (inBrowser && window.__INITIAL_STATE__) ? window.__INITIAL_STATE__.page : defaultState;
 
 export default {
   state,

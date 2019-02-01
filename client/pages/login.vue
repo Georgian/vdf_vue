@@ -23,6 +23,7 @@ export default {
     if (this.$store.getters.isAuthenticated)
       this.$router.replace('/')
   },
+  middleware: 'auth-redirect',
   data: function () {
     return {
       email: '',

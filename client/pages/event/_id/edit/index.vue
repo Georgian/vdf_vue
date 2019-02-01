@@ -34,6 +34,7 @@ import vdfapi from '~/plugins/vdfapi'
 
 export default {
   name: 'EventEditPage',
+  middleware: 'unath-redirect',
   data: function () {
     return {
       vdfEvent: null,

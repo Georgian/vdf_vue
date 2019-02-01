@@ -53,7 +53,7 @@ export default {
       coucou: 'getHelloThere'
     }),
     eventCount () {
-      return this.$store.getters.events
+      return this.$store.getters['modules/events/events']
     }
   },
   watch: {

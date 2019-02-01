@@ -59,7 +59,7 @@ module.exports = {
       imports: [
         {
           set: '@fortawesome/free-solid-svg-icons',
-          icons: ['faBicycle', 'faCalendarAlt', 'faLocationArrow', 'faHeart', 'faGlobe', 'faTh']
+          icons: ['faBicycle', 'faCalendarAlt', 'faLocationArrow', 'faHeart', 'faGlobe', 'faTh', 'faSignInAlt']
         }
       ]
     }],

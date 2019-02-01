@@ -6,14 +6,14 @@
       <span class="title ml-3" style="text-align:justify; color: black">Vârf de Formă<sup style="color: indianred; font-size: 12px">BETA</sup></span>
     </router-link>
     <v-flex mt-2>
-      <vdf-input v-if="$route.name === 'index'"></vdf-input>
+      <vdf-input v-if="isHomePage"></vdf-input>
     </v-flex>
-    <vdf-display-mode-switch></vdf-display-mode-switch>
+    <vdf-display-mode-switch v-if="isHomePage"></vdf-display-mode-switch>
+    <v-spacer/>
     <v-toolbar-items>
-      <v-btn v-if="!isAuthenticated" flat @click="goToLoginPage()"><font-awesome-icon icon="sign-in-alt" />Login</v-btn>
+      <v-btn v-if="!isAuthenticated" flat @click="goToLoginPage()"><font-awesome-icon icon="sign-in-alt" />  Login</v-btn>
       <v-btn v-if="isAuthenticated" flat @click="logout()">Logout</v-btn>
     </v-toolbar-items>
-    <v-spacer></v-spacer>
     <!--<v-toolbar-items>-->
       <!--<v-btn flat><font-awesome-icon icon="coffee" />Despre</v-btn>-->
     <!--</v-toolbar-items>-->
@@ -33,6 +33,9 @@ export default {
   computed: {
     isAuthenticated () {
       return this.$store.getters['modules/auth/isAuthenticated']
+    },
+    isHomePage () {
+      return this.$route.name === 'index'
     }
   },
   methods: {

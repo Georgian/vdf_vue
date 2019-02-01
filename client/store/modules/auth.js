@@ -2,7 +2,7 @@ import jwtDecode from 'jwt-decode'
 import Cookie from 'js-cookie'
 import vdfapi from '../../plugins/vdfapi'
 
-const defaultState = () => ({
+const state = () => ({
   token: null,
   user: null
 })
@@ -24,22 +24,6 @@ const mutations = {
 }
 
 const actions = {
-  nuxtServerInit({ commit }, { req }) {
-    try {
-      const jwtCookie = req.headers.cookie.split(";").find(c => c.trim().startsWith("token="))
-      if (jwtCookie) {
-        let token = jwtCookie.split('=')[1]
-        let payload = jwtDecode(token)
-        let date = Date.now() / 1000
-        if (payload.exp > date) {
-          commit('SET_USER', payload)
-          commit('SET_TOKEN', token)
-        }
-      }
-    } catch (error) {
-
-    }
-  },
   async login({ commit }, loginData) {
     try {
       const { data } = await vdfapi.post('/auth/login', loginData)
@@ -63,10 +47,6 @@ const actions = {
     commit('SET_TOKEN', null)
   }
 }
-
-const inBrowser = typeof window !== 'undefined';
-// if in browser, use pre-fetched state injected by SSR
-const state = (inBrowser && window.__INITIAL_STATE__) ? window.__INITIAL_STATE__.page : defaultState;
 
 export default {
   state,
