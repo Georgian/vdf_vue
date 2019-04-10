@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const vdfapi = axios.create({
-  baseURL: 'https://api.varfdeforma.ro',
-  // baseURL: 'http://localhost:8080',
+  // baseURL: 'https://api.varfdeforma.ro',
+  baseURL: 'http://localhost:8080',
   withCredentials: false,
   headers: {
     'Accept': 'application/json',
