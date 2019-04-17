@@ -19,7 +19,7 @@ const mutations = {
   },
   SET_TOKEN: function (state, token) {
     state.token = token
-    vdfapi.defaults.headers = { Authorization: 'Bearer ' + token }
+    vdfapi.defaults.headers.common['Authorization'] = 'Bearer ' + token
   }
 }
 
