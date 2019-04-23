@@ -1,6 +1,5 @@
 import jwtDecode from 'jwt-decode'
 import Cookie from 'js-cookie'
-import vdfapi from '../../plugins/vdfapi'
 
 const state = () => ({
   token: null,
@@ -19,7 +18,6 @@ const mutations = {
   },
   SET_TOKEN: function (state, token) {
     state.token = token
-    vdfapi.defaults.headers.common['Authorization'] = 'Bearer ' + token
   }
 }
 

@@ -10,6 +10,12 @@ const vdfapi = axios.create({
   }
 })
 
+// vdfapi.onRequest(config => {
+//   if ($store.state.authToken) {
+//     config.headers.common['Authorization'] = store.state.authToken
+//   }
+// })
+
 // var requestLink = process.env.API_BASE_URL + '/event'
 // if (requestParams.length !== 0) {
 //   requestLink = requestLink + '?'
