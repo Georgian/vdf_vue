@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-layout column v-if="vdfEvent">
+      <v-text-field v-model="fbEventLink" label="Event Link" outline></v-text-field>
       <v-text-field v-model="vdfEvent.name" label="Name" outline></v-text-field>
       <v-text-field v-model="vdfEvent.organizer" label="Organizer" outline></v-text-field>
       <v-layout row>
@@ -31,6 +32,7 @@
 
 <script>
   import vdfapi from '~/plugins/vdfapi'
+  import Vue from 'vue'
 
   export default {
     name: 'EventEditPage',
@@ -39,10 +41,33 @@
       return {
         vdfEvent: {},
         selectedTags: null,
-        allTags: null
+        allTags: null,
+        fbEventLink: null,
+        isFBReady: false
       }
     },
+    mounted: function () {
+      this.isFBReady = Vue.FB != undefined
+      window.addEventListener('fb-sdk-ready', this.onFBReady)
+    },
+    beforeDestroy: function () {
+      window.removeEventListener('fb-sdk-ready', this.onFBReady)
+    },
     methods: {
+      onFBReady: function () {
+        this.isFBReady = true
+
+        console.log(Vue.FB)
+
+        Vue.FB.api(
+          '/events/444339356337030?access_token=EAADCo13QZC7YBAFrvZBKHgy6Wm5EmkQ8BkXIXiqmQWfX5QWgsTXa6DiO6AxBdnw7TYX6z8zQIUGvmoZC9k1RcDJMs8FU0y3mvP74yaKUAvXyv6wZBpGuejCjkH4NKIZCWxRWwp6c2HsuvxBmLMZCs9Eo1lElq0BVJoV5gBfInIUO9PglH4Ijft',
+          'GET',
+          {},
+          function(response) {
+            console.log(response)
+          }
+        );
+      },
       hasTag: function (tag) {
         return this.vdfEvent.tags.includes(tag)
       },

@@ -3,6 +3,7 @@ module.exports = {
   mode: 'universal',
   plugins: [
     '~/plugins/main.js',
+    '~/plugins/fb-sdk.js',
     '~/plugins/vuetify.js',
     '~/plugins/search.js'
   ],
