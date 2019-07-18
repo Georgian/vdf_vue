@@ -12,10 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
+    "@nuxtjs/axios": "^5.5.4",
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/sitemap": "^0.1.1",
     "algoliasearch-helper": "^2.26.1",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "express": "^4.16.3",
     "google-maps": "^3.3.0",
     "google-maps-api-loader": "^1.1.1",

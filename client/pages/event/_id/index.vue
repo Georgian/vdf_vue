@@ -109,14 +109,13 @@
 </template>
 
 <script>
-  import vdfapi from '~/plugins/vdfapi'
   import VdfDirMap from '~/components/DirectionsMap'
 
   export default {
     name: 'EventPage',
     components: { VdfDirMap },
     async asyncData ({ params }) {
-      return vdfapi.get('/event/' + params.id)
+      return this.$axios.get('/event/' + params.id)
         .then((res) => {
           let vdfEvent = res.data
           return {

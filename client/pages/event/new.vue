@@ -31,7 +31,6 @@
 </template>
 
 <script>
-  import vdfapi from '~/plugins/vdfapi'
   import Vue from 'vue'
 
   export default {
@@ -73,7 +72,7 @@
       },
       save: function () {
         this.vdfEvent.tags = this.selectedTags
-        vdfapi.post('/event/', this.vdfEvent)
+        this.$axios.post('/event/', this.vdfEvent)
           .then(respone => {
             confirm('Saved!')
             this.$router.push('/')

@@ -5,7 +5,8 @@ module.exports = {
     '~/plugins/main.js',
     '~/plugins/fb-sdk.js',
     '~/plugins/vuetify.js',
-    '~/plugins/search.js'
+    '~/plugins/search.js',
+    '~/plugins/axios.js'
   ],
   head: {
     htmlAttrs: {
@@ -44,12 +45,17 @@ module.exports = {
         useShortDoctype: true
       }
     },
-    vendor: [
-      'axios'
-    ],
     publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/`, // <= add the path to the cached files
   },
   modules: [
+    ['@nuxtjs/axios', {
+      baseURL: 'http://localhost:5000',
+      // baseURL: 'https://api.varfdeforma.ro',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }],
     ['@nuxtjs/google-analytics', {
       id: 'UA-126133683-1',
       /*debug: {

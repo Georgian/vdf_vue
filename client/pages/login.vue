@@ -9,7 +9,7 @@
           <v-text-field label="Password" v-model="password" type="password"></v-text-field>
           <v-btn type="submit" :loading="loading" :disabled="loading">Log In</v-btn>
           <v-btn
-            href="http://localhost:8080/oauth2/authorize/facebook?redirect_uri=http://localhost:3000/signed-in"
+            href="http://localhost:5000/oauth2/authorize/facebook?redirect_uri=http://localhost:3000/signed-in"
             color="blue white--text" v-if="facebook_ready" :loading="facebook_loading" :disabled="facebook_loading">Log in with Facebook</v-btn>
         </v-form>
       </v-card-text>

@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import vdfapi from '~/plugins/vdfapi'
-
 export default {
   name: 'EventEditPage',
   middleware: 'unauth-redirect',
@@ -55,7 +53,7 @@ export default {
     },
     save: function () {
       this.vdfEvent.tags = this.selectedTags
-      vdfapi.put('/event/' + this.vdfEvent.id, this.vdfEvent)
+      this.$axios.put('/event/' + this.vdfEvent.id, this.vdfEvent)
         .then(respone => {
           confirm('Saved!')
           this.$router.push('/')
@@ -67,13 +65,13 @@ export default {
     fetchVdfEvent: function () {
       this.error = this.vdfEvent = null
       let self = this
-      vdfapi.get('/event/' + this.$route.params.id)
+      this.$axios.get('/event/' + this.$route.params.id)
         .then(response => {
           // self.loadingData = false
           self.vdfEvent = response.data
           this.computeEventDates(self.vdfEvent)
 
-          vdfapi.get('/event/tags')
+          this.$axios.get('/event/tags')
             .then(response => {
               self.allTags = response.data
               this.selectedTags = self.vdfEvent.tags

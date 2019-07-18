@@ -1,5 +1,3 @@
-import vdfapi from '../../plugins/vdfapi'
-
 const today = new Date()
 const searchableFields = ['name', 'description', 'discipline', 'organizer', 'locationName']
 const strMatches = function (a, b) { return a && a.toLowerCase().includes(b) }
@@ -64,7 +62,7 @@ const getters = {
 const actions = {
   loadEvents({commit}) {
     commit('SET_LOADING', true)
-    vdfapi
+    this.$axios
       .get('/event')
       .then(r => r.data)
       .then(events => {

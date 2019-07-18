@@ -7,6 +7,9 @@ const state = () => ({
 })
 
 const getters = {
+  getToken (state) {
+    return state.token
+  },
   isAuthenticated (state) {
     return !!state.user
   }
@@ -24,7 +27,7 @@ const mutations = {
 const actions = {
   async login({ commit }, loginData) {
     try {
-      const { data } = await vdfapi.post('/auth/login', loginData)
+      const { data } = await this.$axios.post('/auth/login', loginData)
       dispatch('loginSuccess', data.token)
     } catch (error) {
       if (error.response && error.response.status === 401) {
