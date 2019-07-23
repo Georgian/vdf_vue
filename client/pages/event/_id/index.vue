@@ -114,8 +114,8 @@
   export default {
     name: 'EventPage',
     components: { VdfDirMap },
-    async asyncData ({ params }) {
-      return this.$axios.get('/event/' + params.id)
+    async asyncData ({ app, params }) {
+      return app.$axios.get('/event/' + params.id)
         .then((res) => {
           let vdfEvent = res.data
           return {
