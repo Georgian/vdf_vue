@@ -13,7 +13,13 @@ import VueLazyload from 'vue-lazyload'
 
 Vue.prototype.$eventBus = new Vue()
 
-Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '/no-image.jpg',
+  attempt: 1,
+  // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend']
+  listenEvents: [ 'scroll' ]
+})
 
 Vue.use(VueProgressBar, {
   color: '#8860D0',
