@@ -38,7 +38,7 @@
 
       <v-layout row wrap align-start justify-start>
         <v-flex>
-        <v-chip v-for="tag in vdfEvent.tags" :key="tag.name" color="accent" text-color="white">{{tag.name}}</v-chip>
+          <v-chip v-for="tag in vdfEvent.tags" :key="tag.name" label>{{tag.name}}</v-chip>
         </v-flex>
       </v-layout>
 

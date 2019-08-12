@@ -47,10 +47,12 @@ module.exports = {
     },
     publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/`, // <= add the path to the cached files
   },
+  env: {
+    baseFrontendURL: `${require('./secrets.json').NODE_ENV}` === 'production' ? 'https://varfdeforma.ro' : 'http://localhost:3000',
+  },
   modules: [
     ['@nuxtjs/axios', {
-      baseURL: 'http://localhost:5000',
-      // baseURL: 'https://api.varfdeforma.ro',
+      baseURL: `${require('./secrets.json').NODE_ENV}` === 'production' ? 'https://api.varfdeforma.ro' : 'http://localhost:5000',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

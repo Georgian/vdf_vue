@@ -1,7 +1,6 @@
 <template>
   <div>
     <map-loader
-      apiKey="AIzaSyBE69OXwm8z5UD-6Yr29RcvEAyT9fUvSWA"
       :map-config="mapConfig"
     >
       <template v-for="marker in vdfEvents">

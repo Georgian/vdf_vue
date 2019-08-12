@@ -9,7 +9,7 @@
           <v-text-field label="Password" v-model="password" type="password"></v-text-field>
           <v-btn type="submit" :loading="loading" :disabled="loading">Log In</v-btn>
           <v-btn
-            href="http://localhost:5000/oauth2/authorize/facebook?redirect_uri=http://localhost:3000/signed-in"
+            :href="`${$axios.defaults.baseURL}/oauth2/authorize/facebook?redirect_uri=${redirect_uri}`"
             color="blue white--text" v-if="facebook_ready" :loading="facebook_loading" :disabled="facebook_loading">Log in with Facebook</v-btn>
         </v-form>
       </v-card-text>
@@ -31,7 +31,8 @@ export default {
       alert: null,
       loading: false,
       facebook_loading: false,
-      facebook_ready: true
+      facebook_ready: true,
+      redirect_uri: process.env.baseFrontendURL + '/signed-in'
     }
   },
   name: 'Login',

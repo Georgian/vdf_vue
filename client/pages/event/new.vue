@@ -55,17 +55,6 @@
     methods: {
       onFBReady: function () {
         this.isFBReady = true
-
-        console.log(Vue.FB)
-
-        Vue.FB.api(
-          '/events/444339356337030?access_token=EAADCo13QZC7YBAFrvZBKHgy6Wm5EmkQ8BkXIXiqmQWfX5QWgsTXa6DiO6AxBdnw7TYX6z8zQIUGvmoZC9k1RcDJMs8FU0y3mvP74yaKUAvXyv6wZBpGuejCjkH4NKIZCWxRWwp6c2HsuvxBmLMZCs9Eo1lElq0BVJoV5gBfInIUO9PglH4Ijft',
-          'GET',
-          {},
-          function(response) {
-            console.log(response)
-          }
-        );
       },
       hasTag: function (tag) {
         return this.vdfEvent.tags.includes(tag)
