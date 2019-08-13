@@ -1,11 +1,14 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap xs12>
-      <v-flex v-if="showGrid" v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12>
+      <v-flex v-if="displayMode === 'grid'" v-for="vdfEvent in results" :key="vdfEvent.id" md4 sm6 xs12>
         <vdf-event-card :vdfEvent=vdfEvent></vdf-event-card>
       </v-flex>
-      <v-flex v-if="!showGrid" xs12>
+      <v-flex v-if="displayMode === 'map'" xs12>
         <vdf-map :vdfEvents="results"></vdf-map>
+      </v-flex>
+      <v-flex v-if="displayMode === 'calendar'" xs12>
+        <vdf-calendar :vdfEvents="results"></vdf-calendar>
       </v-flex>
     </v-layout>
   </v-container>
@@ -15,15 +18,18 @@
 import { Component } from 'vue-instantsearch'
 import EventCard from './EventCard'
 import VdfMap from './map/VdfMap'
+import VdfCalendar from './Calendar'
 export default {
   name: 'vdf-results',
   mixins: [Component],
   data: () => ({
-    showGrid: true
+    showGrid: true,
+    displayMode: 'grid' // options: [grid, map, calendar]
   }),
   components: {
     'vdf-event-card': EventCard,
-    'vdf-map': VdfMap
+    'vdf-map': VdfMap,
+    'vdf-calendar': VdfCalendar
   },
   props: {
     stack: {
@@ -37,7 +43,12 @@ export default {
   created: function created() {
     this.updateResultsPerPage();
     this.$eventBus.$on('toggleDisplayMode', () => {
-      this.showGrid = !this.showGrid
+      if (this.displayMode === 'grid')
+        this.displayMode = 'map'
+      else if (this.displayMode === 'map')
+        this.displayMode = 'calendar'
+      else if (this.displayMode === 'calendar')
+        this.displayMode = 'grid'
     })
   },
   watch: {
