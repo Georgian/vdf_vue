@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar app fixed clipped-left>
+  <v-toolbar dense app fixed clipped-left>
     <vue-progress-bar></vue-progress-bar>
     <v-toolbar-side-icon v-on:click="showHideDrawer"></v-toolbar-side-icon>
     <router-link to="/">
@@ -14,9 +14,6 @@
       <v-btn v-if="!isAuthenticated" flat @click="goToLoginPage()"><font-awesome-icon icon="sign-in-alt" />  Login</v-btn>
       <v-btn v-if="isAuthenticated" flat @click="logout()">Logout</v-btn>
     </v-toolbar-items>
-    <!--<v-toolbar-items>-->
-      <!--<v-btn flat><font-awesome-icon icon="coffee" />Despre</v-btn>-->
-    <!--</v-toolbar-items>-->
   </v-toolbar>
 </template>
 
