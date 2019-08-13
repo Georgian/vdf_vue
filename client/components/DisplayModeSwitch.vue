@@ -12,7 +12,13 @@ export default {
   }),
   methods: {
     switchDisplayMode () {
-      this.icon = this.icon === 'th' ? 'globe' : 'th'
+      if (this.icon === 'globe')
+        this.icon = 'calendar-alt'
+      else if (this.icon === 'calendar-alt')
+        this.icon = 'th'
+      else if (this.icon === 'th')
+        this.icon = 'globe'
+
       this.$eventBus.$emit('toggleDisplayMode')
     }
   }
