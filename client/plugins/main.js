@@ -82,10 +82,14 @@ Vue.mixin({
       var result = dateStart.toLocaleDateString(locale, options)
 
       if (dateEndString) {
-        result = result + ' - ' + new Date(dateEndString).toLocaleDateString(locale, options)
+        let formattedDateEndString = new Date(dateEndString).toLocaleDateString(locale, options)
+        result = result + ' - ' + formattedDateEndString.charAt(0).toUpperCase() + formattedDateEndString.slice(1)
       }
 
       return result.charAt(0).toUpperCase() + result.slice(1)
+    },
+    formatDateISO: function(dateObj) {
+      return dateObj.toISOString().slice(0,10);
     }
   }
 })

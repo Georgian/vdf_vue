@@ -2,6 +2,7 @@
 module.exports = {
   mode: 'universal',
   plugins: [
+    {src: '~/plugins/v-calendar.js', ssr: false},
     '~/plugins/main.js',
     '~/plugins/fb-sdk.js',
     '~/plugins/vuetify.js',

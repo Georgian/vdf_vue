@@ -5,10 +5,23 @@
         <v-text-field v-model="fbEventLink" label="Event Link" outline></v-text-field>
         <v-text-field v-model="vdfEvent.name" label="Name" outline></v-text-field>
         <v-text-field v-model="vdfEvent.organizer" label="Organizer" outline></v-text-field>
-        <v-layout row>
-          <v-text-field v-model="vdfEvent.dateStart" label="Date Start" outline></v-text-field>
-          <v-text-field v-model="vdfEvent.dateEnd" label="Date End" outline></v-text-field>
-        </v-layout>
+        <v-flex>
+          <no-ssr>
+            <v-date-picker
+              is-expanded
+              mode='range'
+              v-model="selectedDate">
+              <v-text-field
+                readonly
+                v-model="selectedDateText"
+                slot-scope='props'
+                label="Date"
+                outline
+                @change.native='props.updateValue($event.target.value)'>
+              </v-text-field>
+            </v-date-picker>
+          </no-ssr>
+        </v-flex>
         <v-layout row>
           <v-text-field v-model="vdfEvent.locationName" label="Location" outline></v-text-field>
           <v-text-field v-model="vdfEvent.locationCoordinates" label="Coordinates" outline></v-text-field>
@@ -44,12 +57,29 @@
         selectedTags: null,
         allTags: null,
         fbEventLink: null,
-        isFBReady: false
+        isFBReady: false,
+        selectedDate: {
+          start: null,
+          end: null
+        },
+        selectedDateText: null
+      }
+    },
+    watch: {
+      selectedDate: function(newVal, oldVal) {
+        this.selectedDateText = this.formatDate(newVal.start, newVal.end)
       }
     },
     mounted: function () {
       this.isFBReady = Vue.FB != undefined
       window.addEventListener('fb-sdk-ready', this.onFBReady)
+    },
+    created () {
+      this.$axios.get('/event/tags')
+        .then(response => {
+          self.allTags = response.data
+          this.selectedTags = self.vdfEvent.tags
+        })
     },
     beforeDestroy: function () {
       window.removeEventListener('fb-sdk-ready', this.onFBReady)
@@ -62,6 +92,8 @@
         return this.vdfEvent.tags.includes(tag)
       },
       save: function () {
+        this.vdfEvent.dateStart = this.formatDateISO(this.selectedDate.start)
+        this.vdfEvent.dateEnd = this.formatDateISO(this.selectedDate.end)
         this.vdfEvent.tags = this.selectedTags
         this.$axios.post('/event/', this.vdfEvent)
           .then(respone => {
