@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import VueProgressBar from 'vue-progressbar'
 import VueLazyload from 'vue-lazyload'
+import '~/assets/css/main.css'
 
 // Vue.use(VueGoogleMaps, {
 //   load: {
@@ -84,7 +85,7 @@ Vue.mixin({
         result = result + ' - ' + new Date(dateEndString).toLocaleDateString(locale, options)
       }
 
-      return result
+      return result.charAt(0).toUpperCase() + result.slice(1)
     }
   }
 })

@@ -8,6 +8,9 @@ module.exports = {
     '~/plugins/search.js',
     '~/plugins/axios.js'
   ],
+  css: [
+    '~/assets/css/main.css'
+  ],
   head: {
     htmlAttrs: {
       lang: 'ro',

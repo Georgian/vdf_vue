@@ -1,6 +1,5 @@
 <template>
   <v-text-field
-    class="ml-4"
     v-model.lazy="query"
     solo-inverted
     flat
@@ -27,3 +26,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .compact-form {
+    transform: scale(0.875);
+    transform-origin: left;
+  }
+</style>

@@ -26,6 +26,7 @@
     </v-app>
   </ais-index>
 </template>
+
 <script>
 import VdfHeader from '~/components/Header'
 import VdfFooter from '~/components/Footer'
