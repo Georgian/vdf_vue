@@ -26,7 +26,7 @@
           <v-text-field v-model="vdfEvent.locationName" label="Location" outline></v-text-field>
           <v-text-field v-model="vdfEvent.locationCoordinates" label="Coordinates" outline></v-text-field>
         </v-layout>
-        <v-layout row wrap>
+        <v-layout row>
           <v-flex v-for="tag in allTags" :key="tag.name" md2 sm4 xs10>
             <v-checkbox :label="tag.name" v-model="selectedTags" :value="tag"></v-checkbox>
           </v-flex>
@@ -54,8 +54,8 @@
     data: function () {
       return {
         vdfEvent: {},
-        selectedTags: null,
-        allTags: null,
+        selectedTags: [],
+        allTags: [],
         fbEventLink: null,
         isFBReady: false,
         selectedDate: {
@@ -77,8 +77,8 @@
     created () {
       this.$axios.get('/event/tags')
         .then(response => {
+          console.log(response.data)
           self.allTags = response.data
-          this.selectedTags = self.vdfEvent.tags
         })
     },
     beforeDestroy: function () {
