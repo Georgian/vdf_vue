@@ -33,7 +33,6 @@ import VdfFooter from '~/components/Footer'
 import VdfNavDrawer from '~/components/NavDrawer'
 import CookieLaw from 'vue-cookie-law'
 import createSearchStoreFromVuex from '../plugins/search'
-import { mapGetters } from 'vuex'
 
 export default {
   components: { VdfFooter, VdfHeader, VdfNavDrawer, CookieLaw },
@@ -42,24 +41,25 @@ export default {
   }),
   created () {
     this.searchStore = createSearchStoreFromVuex(this.$store)
-    // this.$Progress.start()
   },
   mounted () {
-    if (this.$route.path === '/')
-      this.$store.dispatch('modules/events/loadEvents')
+    this.fetch()
   },
   computed: {
-    ...mapGetters({
-      logicData: 'getAppLogicData',
-      coucou: 'getHelloThere'
-    }),
     eventCount () {
       return this.$store.getters['modules/events/events']
     }
   },
   watch: {
+    '$route': 'fetch',
     eventCount (newCount, oldCount) {
       this.searchStore.refresh()
+    }
+  },
+  methods: {
+    fetch () {
+      if (this.$route.path === '/')
+        this.$store.dispatch('modules/events/loadEvents')
     }
   }
 }
