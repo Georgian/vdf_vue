@@ -1,67 +1,80 @@
 <template>
-  <!-- TODO need to hide this ais-index if not on search page !! -->
-  <ais-index
-    index-name='vdf'
-    :search-store='searchStore'>
-    <v-app id='vdf'>
+  <v-app id='vdf'>
 
-      <vdf-nav-drawer />
-      <vdf-header />
-      <nuxt />
-      <vdf-footer />
+    <!-- When on search page -->
+    <v-flex v-if="enableAisIndex">
+      <ais-index
+        index-name='vdf'
+        :search-store='searchStore'>
+        <vdf-nav-drawer/>
+        <vdf-header show-drawer-icon/>
+        <nuxt/>
+        <vdf-footer/>
+      </ais-index>
+    </v-flex>
 
-      <no-ssr>
-        <cookie-law
-          theme="blood-orange"
-          buttonText="Am înțeles!"
-          buttonLinkText="">
-          <div slot="message">
-            Acest website folosește cookie-uri pentru a furniza vizitatorilor o experiență mult mai bună de
-            navigare și servicii adaptate nevoilor și interesului fiecăruia. Citește
-            <router-link to="/termeni" class="white--text">Termeni și Condiții</router-link>
-          </div>
-        </cookie-law>
-      </no-ssr>
+    <!-- When not on search page -->
+    <v-flex v-if="!enableAisIndex">
+      <vdf-header v-bind:show-drawer-icon='false'/>
+      <nuxt/>
+      <vdf-footer/>
+    </v-flex>
 
-    </v-app>
-  </ais-index>
+    <no-ssr>
+      <cookie-law
+        theme="blood-orange"
+        buttonText="Am înțeles!"
+        buttonLinkText="">
+        <div slot="message">
+          Acest website folosește cookie-uri pentru a furniza vizitatorilor o experiență mult mai bună de
+          navigare și servicii adaptate nevoilor și interesului fiecăruia. Citește
+          <router-link to="/termeni" class="white--text">Termeni și Condiții</router-link>
+        </div>
+      </cookie-law>
+    </no-ssr>
+  </v-app>
 </template>
 
 <script>
-import VdfHeader from '~/components/Header'
-import VdfFooter from '~/components/Footer'
-import VdfNavDrawer from '~/components/NavDrawer'
-import CookieLaw from 'vue-cookie-law'
-import createSearchStoreFromVuex from '../plugins/search'
+  import VdfHeader from '~/components/Header'
+  import VdfFooter from '~/components/Footer'
+  import VdfNavDrawer from '~/components/NavDrawer'
+  import CookieLaw from 'vue-cookie-law'
+  import createSearchStoreFromVuex from '../plugins/search'
 
-export default {
-  components: { VdfFooter, VdfHeader, VdfNavDrawer, CookieLaw },
-  data: () => ({
-    searchStore: null
-  }),
-  created () {
-    this.searchStore = createSearchStoreFromVuex(this.$store)
-  },
-  mounted () {
-    this.fetch()
-  },
-  computed: {
-    eventCount () {
-      return this.$store.getters['modules/events/events']
-    }
-  },
-  watch: {
-    '$route': 'fetch',
-    eventCount (newCount, oldCount) {
-      this.searchStore.refresh()
-    }
-  },
-  methods: {
-    fetch () {
-      if (this.$route.path === '/')
-        this.$store.dispatch('modules/events/loadEvents')
+  export default {
+    components: {
+      VdfHeader, VdfFooter, VdfNavDrawer, CookieLaw
+    },
+    data: () => ({
+      searchStore: null
+    }),
+    created() {
+      this.searchStore = createSearchStoreFromVuex(this.$store)
+    },
+    mounted() {
+      this.routeChanged()
+    },
+    computed: {
+      enableAisIndex() {
+        return this.$route.path === '/'
+      },
+      eventCount() {
+        return this.$store.getters['modules/events/events']
+      }
+    },
+    watch: {
+      '$route': 'routeChanged',
+      eventCount(newCount, oldCount) {
+        this.searchStore.refresh()
+      }
+    },
+    methods: {
+      routeChanged() {
+        if (this.enableAisIndex)
+          this.$store.dispatch('modules/events/loadEvents')
+      }
     }
   }
-}
 </script>
 

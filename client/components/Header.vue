@@ -2,7 +2,7 @@
   <div>
     <v-toolbar  app fixed clipped-left>
       <vue-progress-bar></vue-progress-bar>
-      <v-toolbar-side-icon v-on:click="showHideDrawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon v-if="showDrawerIcon" v-on:click="showHideDrawer"></v-toolbar-side-icon>
       <router-link to="/">
         <span id="site-title" class="title">Vârf de Formă<sup style="color: indianred; font-size: 12px">BETA</sup></span>
       </router-link>
@@ -25,6 +25,9 @@
 
   export default {
     name: 'vdf-header',
+    props: {
+      showDrawerIcon: Boolean
+    },
     components: {
       VdfDisplayModeSwitch,
       'vdf-input': Input
