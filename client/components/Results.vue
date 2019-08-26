@@ -12,33 +12,34 @@
 </template>
 
 <script>
-import { Component } from 'vue-instantsearch'
-import EventCard from './EventCard'
-import VdfMap from './map/VdfMap'
-export default {
-  name: 'vdf-results',
-  mixins: [Component],
-  data: () => ({
-    showGrid: true
-  }),
-  components: {
-    'vdf-event-card': EventCard,
-    'vdf-map': VdfMap
-  },
-  created: function created() {
-    this.$eventBus.$on('toggleDisplayMode', () => {
-      this.showGrid = !this.showGrid
-    })
-  },
-  mounted: function () {
-    this.searchStore.start()
-  },
-  computed: {
-    results: function results() {
-      return this.searchStore.results
+  import {Component} from 'vue-instantsearch'
+  import EventCard from './EventCard'
+  import VdfMap from './map/VdfMap'
+
+  export default {
+    name: 'vdf-results',
+    mixins: [Component],
+    data: () => ({
+      showGrid: true
+    }),
+    components: {
+      'vdf-event-card': EventCard,
+      'vdf-map': VdfMap
+    },
+    created: function created() {
+      this.$eventBus.$on('toggleDisplayMode', () => {
+        this.showGrid = !this.showGrid
+      })
+    },
+    mounted: function () {
+      this.searchStore.start()
+    },
+    computed: {
+      results: function results() {
+        return this.searchStore.results
+      }
     }
   }
-}
 </script>
 
 <style scoped>

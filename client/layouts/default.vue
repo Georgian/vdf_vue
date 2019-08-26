@@ -6,8 +6,8 @@
       <ais-index
         index-name='vdf'
         :search-store='searchStore'>
-        <vdf-nav-drawer/>
-        <vdf-header show-drawer-icon/>
+        <vdf-nav-drawer />
+        <vdf-header show-drawer-icon />
         <nuxt/>
         <vdf-footer/>
       </ais-index>

@@ -11,34 +11,33 @@
 </template>
 
 <script>
-import { Component } from 'vue-instantsearch'
+  import {Component} from 'vue-instantsearch'
 
-const facetName = 'showPastEvents'
+  const facetName = 'showPastEvents'
 
-export default {
-  name: 'vdf-misc-filter',
-  mixins: [Component],
-  data () {
-    return {
-      showPastEvents: false
-    }
-  },
-  created () {
-    this.searchStore.addFacet(facetName)
-    this.searchStore.algoliaHelper.addFacetRefinement(facetName, this.showPastEvents)
-  },
-  watch: {
-    showPastEvents (val) {
-      this.searchStore.stop()
-      this.searchStore.algoliaHelper.removeFacetRefinement(facetName)
-      this.searchStore.algoliaHelper.addFacetRefinement(facetName, val)
-      this.searchStore.start()
-      this.searchStore.refresh()
+  export default {
+    name: 'vdf-misc-filter',
+    mixins: [Component],
+    data() {
+      return {
+        showPastEvents: false
+      }
+    },
+    created() {
+      this.searchStore.addFacet(facetName)
+      this.searchStore.algoliaHelper.addFacetRefinement(facetName, this.showPastEvents)
+    },
+    watch: {
+      showPastEvents(val) {
+        this.searchStore.stop()
+        this.searchStore.algoliaHelper.removeFacetRefinement(facetName)
+        this.searchStore.algoliaHelper.addFacetRefinement(facetName, val)
+        this.searchStore.start()
+        this.searchStore.refresh()
+      }
     }
   }
-}
 </script>
 
-<style scoped>
-
+<style>
 </style>

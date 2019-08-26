@@ -2,7 +2,10 @@
   <v-content>
     <v-container grid-list-xl>
       <v-layout row wrap>
-        <v-flex>
+        <v-flex lg2 pl-0 hidden-md-and-down>
+          <vdf-main-filter />
+        </v-flex>
+        <v-flex lg10>
           <vdf-results></vdf-results>
         </v-flex>
       </v-layout>
@@ -14,14 +17,14 @@
 import VdfSportFilter from '~/components/SportFilter'
 import VdfMiscFilter from '~/components/MiscFilter'
 import VdfResults from '~/components/Results'
-import VdfFilter from '~/components/Filter'
+import VdfMainFilter from "../components/MainFilter";
 
 export default {
   components: {
+    VdfMainFilter,
     VdfResults,
     VdfMiscFilter,
-    VdfSportFilter,
-    VdfFilter
+    VdfSportFilter
   },
   data: () => ({
     drawer: null
