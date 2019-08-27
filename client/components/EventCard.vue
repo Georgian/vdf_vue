@@ -45,4 +45,7 @@
   .hover-item-text-underline:hover {
     text-decoration: underline;
   }
+  img {
+    object-fit: cover;
+  }
 </style>
