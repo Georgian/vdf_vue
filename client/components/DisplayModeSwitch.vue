@@ -1,17 +1,17 @@
 <template>
-  <v-btn fab color="darkgray" icon v-on:click="switchDisplayMode">
-    <font-awesome-icon class="fa-lg" :icon=icon></font-awesome-icon>
+  <v-btn fab color="darkgray" icon @click="switchDisplayMode">
+    <font-awesome-icon :icon="icon" class="fa-lg" />
   </v-btn>
 </template>
 
 <script>
 export default {
-  name: 'vdf-display-mode-switch',
+  name: 'VdfDisplayModeSwitch',
   data: () => ({
     icon: 'globe'
   }),
   methods: {
-    switchDisplayMode () {
+    switchDisplayMode() {
       this.icon = this.icon === 'th' ? 'globe' : 'th'
       this.$eventBus.$emit('toggleDisplayMode')
     }
@@ -19,6 +19,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
