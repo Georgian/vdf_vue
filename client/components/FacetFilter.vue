@@ -1,5 +1,6 @@
 <template>
   <ais-refinement-list
+    :test="checkboxStyle"
     :attribute-name="facetName"
     :sort-by="['count:desc', 'name:asc']"
     inline-template
@@ -10,10 +11,11 @@
           <v-checkbox
             :label="facet.name"
             v-model="facet.isRefined"
+            class="test my-1"
             hide-details
             @change="toggleRefinement(facet)"
           ></v-checkbox>
-          <div class="badge mt-3">{{ facet.count }}</div>
+          <div class="badge ">{{ facet.count }}</div>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -23,6 +25,7 @@
 <script>
 export default {
   name: 'VdfFacetFilter',
+  components: {},
   props: {
     facetName: {
       type: String,
@@ -33,10 +36,12 @@ export default {
 </script>
 
 <style>
-.v-checkbox .v-label {
+.debug {
+  border-style: solid;
+}
+.test label {
   font-size: 14px;
 }
-
 .badge {
   float: right;
   min-width: 10px;

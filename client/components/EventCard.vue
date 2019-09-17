@@ -25,9 +25,10 @@
 
     <v-layout row wrap align-start justify-start>
       <v-flex>
-        <v-chip v-for="tag in vdfEvent.tags" :key="tag.name" label>{{
-          tag.name
-        }}</v-chip>
+        <v-chip v-for="tag in vdfEvent.tags" :key="tag.name" label>
+          <v-img :src="trophyIcon"></v-img>
+          {{ tag.name }}
+        </v-chip>
       </v-flex>
     </v-layout>
   </v-card>
@@ -37,6 +38,16 @@
 export default {
   props: {
     vdfEvent: { type: Object, required: true }
+  },
+  data() {
+    return {
+      trophyIcon: '/trophy.png'
+    }
+  },
+  methods: {
+    tagLabel(tag) {
+      let name = tag.name
+    }
   }
 }
 </script>
@@ -51,5 +62,8 @@ export default {
 }
 img {
   object-fit: cover;
+}
+.trophy-tag {
+  color: yellow;
 }
 </style>

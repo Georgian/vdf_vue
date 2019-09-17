@@ -17,7 +17,7 @@
 import VdfSportFilter from '~/components/SportFilter'
 import VdfMiscFilter from '~/components/MiscFilter'
 import VdfResults from '~/components/Results'
-import VdfMainFilter from "../components/MainFilter";
+import VdfMainFilter from '../components/MainFilter'
 
 export default {
   components: {
@@ -30,7 +30,7 @@ export default {
     drawer: null
   }),
   methods: {
-    getMarkerLocation: function (locationCoordinates) {
+    getMarkerLocation: function(locationCoordinates) {
       let split = locationCoordinates.split(',')
       return { lat: parseFloat(split[0]), lng: parseFloat(split[1]) }
     }
@@ -38,6 +38,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

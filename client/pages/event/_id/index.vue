@@ -14,11 +14,23 @@
       </v-flex>
       <v-layout flex align-center justify-center>
         <v-flex lg6 md6>
-          <h1>{{vdfEvent.name}}</h1>
-          <h2><font-awesome-icon icon="calendar-alt"></font-awesome-icon> {{vdfEventDates}}</h2>
-          <h2><font-awesome-icon icon="location-arrow"></font-awesome-icon> {{vdfEvent.locationName}}</h2>
-          <a href="https://goo.gl/forms/IUP6RC6D4lfGVyx92" style="text-decoration: none;" class="blue--text" target="_blank">
-            <font-awesome-icon icon="heart"></font-awesome-icon> Informații greșite? Contribuie aici
+          <h1>{{ vdfEvent.name }}</h1>
+          <h2>
+            <font-awesome-icon icon="calendar-alt"></font-awesome-icon>
+            {{ vdfEventDates }}
+          </h2>
+          <h2>
+            <font-awesome-icon icon="location-arrow"></font-awesome-icon>
+            {{ vdfEvent.locationName }}
+          </h2>
+          <a
+            href="https://goo.gl/forms/IUP6RC6D4lfGVyx92"
+            style="text-decoration: none;"
+            class="blue--text"
+            target="_blank"
+          >
+            <font-awesome-icon icon="heart"></font-awesome-icon> Informații
+            greșite? Contribuie aici
           </a>
         </v-flex>
         <v-flex lg6 md6 hidden-sm-and-down>
@@ -27,7 +39,6 @@
       </v-layout>
 
       <v-expansion-panel>
-
         <v-expansion-panel-content value="true">
           <div slot="header">Descriere</div>
           <v-card>
@@ -101,73 +112,70 @@
             units="uk">
           </weather>-->
         </v-expansion-panel-content>
-
       </v-expansion-panel>
-
     </v-layout>
   </v-container>
 </template>
 
 <script>
-  import VdfDirMap from '~/components/DirectionsMap'
+import VdfDirMap from '~/components/DirectionsMap'
 
-  export default {
-    name: 'EventPage',
-    components: { VdfDirMap },
-    async asyncData ({ app, params }) {
-      return app.$axios.get('/event/' + params.id)
-        .then((res) => {
-          let vdfEvent = res.data
-          return {
-            vdfEvent: vdfEvent,
-            loadingData: false,
-            metaTitle: vdfEvent.name + ' | Vârf de Formă',
-            metaDesc: vdfEvent.description.substr(0, 100) + '...',
-            metaImg: vdfEvent.photoLink
-          }
-        })
-    },
-    data: function () {
+export default {
+  name: 'EventPage',
+  components: { VdfDirMap },
+  async asyncData({ app, params }) {
+    return app.$axios.get('/event/' + params.id).then(res => {
+      let vdfEvent = res.data
       return {
+        vdfEvent: vdfEvent,
         loadingData: false,
-        error: null,
-        vdfEvent: null,
-        vdfEventDates: null,
-        metaTitle: 'Vârf de Formă',
-        metaDesc: 'Concurs ciclism',
-        metaImg: ''
+        metaTitle: vdfEvent.name + ' | Vârf de Formă',
+        metaDesc: vdfEvent.description
+          ? vdfEvent.description.substr(0, 100) + '...'
+          : '',
+        metaImg: vdfEvent.photoLink
       }
-    },
-    head () {
-      return {
-        title: this.metaTitle,
-        meta: [
-          {
-            hid: `og:title`,
-            property: 'og:title',
-            content: this.metaTitle
-          },
-          {
-            hid: `og:description`,
-            property: 'og:description',
-            content: this.metaDesc
-          },
-          {
-            hid: `og:image`,
-            property: 'og:image',
-            content: this.metaImg
-          }
-        ]
-      }
-    },
-    methods: {
-      handleEmptyField: function (field) {
-        return field && field !== '' ? field : '<b>Nici o informație</b>'
-      }
+    })
+  },
+  data: function() {
+    return {
+      loadingData: false,
+      error: null,
+      vdfEvent: null,
+      vdfEventDates: null,
+      metaTitle: 'Vârf de Formă',
+      metaDesc: 'Concurs ciclism',
+      metaImg: ''
+    }
+  },
+  head() {
+    return {
+      title: this.metaTitle,
+      meta: [
+        {
+          hid: `og:title`,
+          property: 'og:title',
+          content: this.metaTitle
+        },
+        {
+          hid: `og:description`,
+          property: 'og:description',
+          content: this.metaDesc
+        },
+        {
+          hid: `og:image`,
+          property: 'og:image',
+          content: this.metaImg
+        }
+      ]
+    }
+  },
+  methods: {
+    handleEmptyField: function(field) {
+      return field && field !== '' ? field : '<b>Nici o informație</b>'
     }
   }
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
