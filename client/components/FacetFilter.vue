@@ -1,6 +1,5 @@
 <template>
   <ais-refinement-list
-    :test="checkboxStyle"
     :attribute-name="facetName"
     :sort-by="['count:desc', 'name:asc']"
     inline-template
