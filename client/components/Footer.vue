@@ -1,5 +1,5 @@
 <template>
-  <v-footer height="100px" class="text-xs-center">
+  <v-footer height="100px" class="text-xs-center" absolute>
     <v-layout column>
       <!--<v-flex mt-3 mb-1>
         Un proiect pilot dezvoltat în timpul liber, din pasiune pentru ciclism și programare <font-awesome-icon icon="heart"></font-awesome-icon>
